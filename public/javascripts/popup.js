@@ -36,6 +36,13 @@ function windowOnClick(event) {
     toggleModal();
   }
 }
+//  function getIndex(event) {
+//    console.log("test");
+
+// }
+
+//okButton[0].addEventListener("click", getIndex)
+
 
 trigger[0].addEventListener("click", toggleModal);
 trigger[1].addEventListener("click", toggleModal);
@@ -46,6 +53,7 @@ for (let i = 0; i < cancelButton.length; i++) {
   closeButton[0].addEventListener("click", cancelToggle);
   cancelButton[i].addEventListener("click", cancelToggle);
   okButton[i].addEventListener("click", cancelToggle);
+  //okButton[i].addEventListener("click", getIndex);
 }
 // cancel.addEventListener("click", cancelToggle);
 window.addEventListener("click", windowOnClick);
