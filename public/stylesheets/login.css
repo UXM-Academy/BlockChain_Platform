@@ -44,14 +44,8 @@ span.or-text {
 button:not(:disabled) {
   cursor: pointer;
   color: #fff;
-  background-color: #83dcb7;
-  border-color: #83dcb7;
-}
-
-.btn-primary {
-  color: #fff;
-  background-color: #0d6efd;
-  border-color: #0d6efd;
+  background-color: rgb(66, 110, 233);
+  border-color: rgb(66, 110, 233);
 }
 
 input.btn.btn-primary.form-control {
@@ -72,4 +66,14 @@ input.btn.btn-primary.form-control {
   appearance: none;
   border-radius: 0.25rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+input.btn.btn-primary.form-control {
+  border-color: #efefef;
+  background-color: #efefef;
+  color: #3a3a3a;
+}
+input.btn.btn-primary.form-control:hover {
+  color: #fff;
+  background-color: #83dcb7;
+  border-color: #83dcb7;
 }

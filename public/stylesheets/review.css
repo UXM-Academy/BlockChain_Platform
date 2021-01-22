@@ -1,0 +1,57 @@
+h3 {
+  color: #efefef;
+}
+
+.main {
+  background-color: #fcf8f8;
+  border: 2px solid lightgray;
+  width: 70%;
+  height: auto;
+}
+
+.main_common {
+  display: inline-block;
+  width: 70%;
+  height: 100px;
+}
+
+.line {
+  width: 70%;
+}
+.form-control {
+  width: 100%;
+}
+.btn.btn-primary {
+  width: 150px;
+  margin-top: 10px;
+  margin-left: 50%;
+}
+
+#w3review {
+  width: 70%;
+  height: 99.9%;
+  background-color: #fff;
+  border: 2px solid lightgray;
+}
+#btn-review {
+  border-color: #efefef;
+  background-color: #efefef;
+  color: #3a3a3a;
+}
+
+#btn-review:hover {
+  color: #fff;
+  background-color: #83dcb7;
+  border-color: #83dcb7;
+}
+#btn-ok {
+  border-color: #efefef;
+  background-color: #efefef;
+  color: #3a3a3a;
+}
+
+#btn-ok:hover {
+  color: #fff;
+  background-color: #83dcb7;
+  border-color: #83dcb7;
+}

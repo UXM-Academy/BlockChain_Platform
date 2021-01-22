@@ -1,0 +1,31 @@
+.container
+  input.file(type='file' name='img' id="img" accept='image/*')
+  .row.g-3.mt-3
+    .col-sm-6
+      label.form-label(for='nickName') 별명 업체명
+      input#nickName.form-control(type='text' placeholder='' value=seller.nickName required='' name="nickName") 
+    .col-sm-6
+      label.form-label(for='phone') 전화번호
+      input#phone.form-control(type='phone' placeholder='' value=seller.phone required='' name="phone" )
+    label.form-label(for='expert')
+      | 전문 분야
+      span.text-muted
+        |  (중복 선택 가능)
+    br
+    .form-check.form-check-inline
+      input#inlineCheckbox1.form-check-input(type='checkbox' value='디자인' name="design")
+      label.form-check-label(for='inlineCheckbox1') 디자인
+    .form-check.form-check-inline
+      input#inlineCheckbox2.form-check-input(type='checkbox' value='프로그래밍' name="programming" )
+      label.form-check-label(for='inlineCheckbox2') IT / 프로그래밍
+    .form-check.form-check-inline
+      input#inlineCheckbox3.form-check-input(type='checkbox' value='사진/영상/음향' name="photo")
+      label.form-check-label(for='inlineCheckbox3') 사진 / 영상 / 음향
+    .col-12
+      label(for='sellerIntro')
+        | 소개 
+        span.text-muted
+          | 학력, 경력, 자격증 등
+      textarea#sellerIntro.form-control(type='text'  required='' name="sellerIntro" rows='5')= seller.sellerIntro
+  hr.my-4
+  button.w-100.btn-outline-success.btn-lg(type='submit') 전문가 등록 완료하기

@@ -1,0 +1,35 @@
+extends layout
+
+block content  
+  //- link(rel='stylesheet' href='/stylesheets/style.css')
+    meta(charset='utf-8')
+  link(rel='canonical' href='https://getbootstrap.com/docs/5.0/examples/checkout/')
+  link(rel="stylesheet", href="/stylesheets/register.css")
+  //- // Bootstrap core CSS
+  //- link(href='admin.css' rel='stylesheet')
+  style.
+    .container{
+    margin: 0 auto;
+    }
+    .col-md-10{
+    margin: 0 auto 100px auto ;
+    width: 50%;
+    }
+    @media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+    font-size: 3.5rem;
+    }
+    }
+  //- // Custom styles for this template
+  //- link(href='form-validation.css' rel='stylesheet')
+  .py-5.text-center
+    h2 상품 및 서비스 등록
+    p.lead 아래 정보를 기입하여 새로운 상품이나 서비스를 등록하세요!
+  .col-md-10
+    .ml-2.col-sm-6
+      img#preview.img-thumbnail(src='https://placehold.it/200x200' width='200px' height='200px')
+    br
+    form.needs-validatio(novalidate='' action='', method='POST')
+      include registerServiceFrom.pug
+  //- script(src='../assets/dist/js/bootstrap.bundle.min.js')
+  //- script(src='admin.js')

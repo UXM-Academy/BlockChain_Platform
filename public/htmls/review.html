@@ -1,121 +1,85 @@
+<!DOCTYPE html>
 <html>
   <head>
-    <title>리뷰 페이지</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
+    <title>별점</title>
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
       crossorigin="anonymous"
     />
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
-      crossorigin="anonymous"
-    ></script>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/review.css" />
+
+    <script src="../javascripts/star.js"></script>
   </head>
-  <style>
-    .blind {
-      position: absolute;
-      overflow: hidden;
-      margin: -1px;
-      padding: 0;
-      width: 1px;
-      height: 1px;
-      border: none;
-      clip: rect(0, 0, 0, 0);
-    }
-
-    .startRadio {
-      display: inline-block;
-      overflow: hidden;
-      height: 40px;
-
-      &:after {
-        content: "";
-        display: block;
-        position: relative;
-        z-index: 10;
-        height: 40px;
-        background: url("rdNwSz/CjAAQpkGTQKEVKkAAAAASUVORK5CYII=") < !-url
-          수정필요 png를 url로 바꾸는 거 사용하기 별 모양 그림은
-          바탕화면에있음-> repeat-x 0 0;
-        background-size: contain;
-        pointer-events: none;
-      }
-
-      &__box {
-        position: relative;
-        z-index: 1;
-        float: left;
-        width: 20px;
-        height: 40px;
-        cursor: pointer;
-
-        input {
-          opacity: 0 !important;
-          height: 0 !important;
-          width: 0 !important;
-          position: absolute !important;
-
-          &:checked + .startRadio__img {
-            background-color: #0084ff;
-          }
-        }
-      }
-
-      &__img {
-        display: block;
-        position: absolute;
-        right: 0;
-        width: 500px;
-        height: 40px;
-        pointer-events: none;
-      }
-    }
-  </style>
 
   <body>
-    <div class="startRadio">
-      <label class="startRadio__box">
-        <input type="radio" name="star" id="" />
-        <span class="startRadio__img"><span class="blind">별 1개</span></span>
-      </label>
-      <label class="startRadio__box">
-        <input type="radio" name="star" id="" />
-        <span class="startRadio__img"><span class="blind">별 1.5개</span></span>
-      </label>
-      <label class="startRadio__box">
-        <input type="radio" name="star" id="" />
-        <span class="startRadio__img"><span class="blind">별 2개</span></span>
-      </label>
-      <label class="startRadio__box">
-        <input type="radio" name="star" id="" />
-        <span class="startRadio__img"><span class="blind">별 2.5개</span></span>
-      </label>
-      <label class="startRadio__box">
-        <input type="radio" name="star" id="" />
-        <span class="startRadio__img"><span class="blind">별 3개</span></span>
-      </label>
-      <label class="startRadio__box">
-        <input type="radio" name="star" id="" />
-        <span class="startRadio__img"><span class="blind">별 3.5개</span></span>
-      </label>
-      <label class="startRadio__box">
-        <input type="radio" name="star" id="" />
-        <span class="startRadio__img"><span class="blind">별 4개</span></span>
-      </label>
-      <label class="startRadio__box">
-        <input type="radio" name="star" id="" />
-        <span class="startRadio__img"><span class="blind">별 4.5개</span></span>
-      </label>
-      <label class="startRadio__box">
-        <input type="radio" name="star" id="" />
-        <span class="startRadio__img"><span class="blind">별 5개</span></span>
-      </label>
-      <label class="startRadio__box">
-        <input type="radio" name="star" id="" />
-        <span class="startRadio__img"><span class="blind">별 5.5개</span></span>
-      </label>
+    <div class="container">
+      <p>
+        <button
+          class="btn btn-primary"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#demo"
+          id="btn-review"
+          aria-expanded="false"
+          aria-controls="demo"
+        >
+          리뷰 작성하기
+        </button>
+      </p>
+      <div class="collapse" id="demo">
+        <h4>별점주기</h4>
+        <div class="make_star">
+          <select name="" id="makeStar">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+          <div class="rating" data-rate="3">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+        </div>
+        <hr class="line" />
+        <div class="main">
+          <textarea id="w3review" name="comment" rows="4" cols="50"> </textarea>
+        </div>
+        <div class="last">
+          <a href="#" class="btn btn-primary" role="button" id="btn-ok">확인</a>
+        </div>
+      </div>
     </div>
+
+    <!-- 임시 -->
+
+    <script>
+      function handleClick() {
+        console.log(true);
+      }
+      const btn = document.querySelector("button");
+      btn.addEventListener("click", handleClick);
+      console.log(btn);
+    </script>
   </body>
 </html>

@@ -1,0 +1,22 @@
+.container
+  input.file(type='file' name='img' id="img" accept='image/*')
+  .row.g-3.mt-3
+    .col-sm-6
+      label.form-label(for='serviceName') 상품 및 서비스명
+      //- input#serviceName.form-control(type='text' placeholder='' value=service.serviceName required='' name="serviceName") 
+      input#serviceName.form-control(type='text' placeholder=''  required='' name="serviceName")
+    .col-sm-6
+      label.form-label(for='price') 가격
+      //- input#price.form-control(type='text' placeholder='' value=service.price required='' name="price")
+      input#price.form-control(type='text' placeholder=''  required='' name="price")
+    .col-12
+      label(for='serviceIntro')
+        | 상품 소개 
+      //- textarea#serviceIntro.form-control(type='text'  required='' name="serviceIntro" rows='5')= service.serviceIntro
+      textarea#serviceIntro.form-control(type='text'  required='' name="serviceIntro" rows='5')
+  hr.my-4
+  button.w-100.btn-outline-success.btn-lg(type='submit') 상품 등록 완료하기
+      
+
+  //- script(src='../assets/dist/js/bootstrap.bundle.min.js')
+  //- script(src='admin.js')

@@ -1,39 +1,47 @@
+extends layout
 
-.container
-  .row
-    .col-sm
-    .col-sm
-      //- 점보트론
-      .jumbotron(style='padding-top: 20px;')
-        //- 로그인 정보를 숨기면서 전송post
-        form(method='post' action="/signin")
-          h3(style='text-align: center;')  &#xB85C;&#xADF8;&#xC778;
-          .form-group
-            div
-              label(for='number') &#xC774;&#xBA54;&#xC77C;
-            input.form-control(type='text' placeholder='example@mjmong.com' name='userID' id='userID' )
-          .form-group
-            div
-              label(for='number') &#xBE44;&#xBC00;&#xBC88;&#xD638;
-            input.form-control(type='password' placeholder='비밀번호를 입력해주세요' name='userPassword' id='userPassword' )
-          br
-          input.btn.btn-primary.form-control(type='submit' value='로그인')
-          p
-            b
-              p.text-size &#xB610;&#xB294;
-          //- button.btn.btn-primary.form-control(type='submit' value='구글로 로그인')
-          //-   i.fa.fa-google()
-          //-   img(src='https://img.icons8.com/color/16/000000/google-logo.png' alt='google logo')
-          button.btn.btn-primary.form-control(type='submit')
-            i.fa.fa-google-plus(aria-hidden="true")
-            |  구글 로그인
-          br
-          p.text-size
-            | MJ mong &#xC774; &#xCC98;&#xC74C;&#xC774;&#xC2E0;&#xAC00;&#xC694;? 
-            a(href='/authLayout?title=join') &#xD68C;&#xC6D0;&#xAC00;&#xC785;
-          p
-    .col-sm
-      
+block content
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title Document
+    link(rel="stylesheet", href="/stylesheets/login.css")
+  body
+    .container
+      .row
+        .col-sm
+        .col-sm
+          //- 점보트론
+          .jumbotron(style='padding-top: 20px;')
+            //- 로그인 정보를 숨기면서 전송post
+            form(method='post' action="/signin")
+              h3(style='text-align: center;')  &#xB85C;&#xADF8;&#xC778;
+              .form-group
+                div
+                  label(for='number') &#xC774;&#xBA54;&#xC77C;
+                input.form-control(type='text' placeholder='example@mjmong.com' name='userID' id='userID' )
+              .form-group
+                div
+                  label(for='number') &#xBE44;&#xBC00;&#xBC88;&#xD638;
+                input.form-control(type='password' placeholder='비밀번호를 입력해주세요' name='userPassword' id='userPassword' )
+              br
+              input.btn.btn-primary.form-control(type='submit' value='로그인')
+              p
+                b
+                  p.text-size &#xB610;&#xB294;
+              //- button.btn.btn-primary.form-control(type='submit' value='구글로 로그인')
+              //-   i.fa.fa-google()
+              //-   img(src='https://img.icons8.com/color/16/000000/google-logo.png' alt='google logo')
+              button.btn.btn-primary.form-control(type='submit')
+                i.fa.fa-google-plus(aria-hidden="true")
+                |  구글 로그인
+              br
+              p.text-size
+                | MJ mong &#xC774; &#xCC98;&#xC74C;&#xC774;&#xC2E0;&#xAC00;&#xC694;? 
+                a(href='/join') &#xD68C;&#xC6D0;&#xAC00;&#xC785;
+              p
+        .col-sm
+          
     //- .col-lg-4
     //- .col-lg-4
       // 점보트론

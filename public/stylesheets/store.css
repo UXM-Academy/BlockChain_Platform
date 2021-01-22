@@ -135,7 +135,16 @@ form .row .col-2,
 form .row .col-2 {
   padding-right: 0;
 }
-
+button.pay-btn.d-flex.mx-auto {
+  border-color: #efefef;
+  background-color: #efefef;
+  color: #3a3a3a;
+}
+button.pay-btn.d-flex.mx-auto:hover {
+  color: #fff;
+  background-color: #83dcb7;
+  border-color: #83dcb7;
+}
 #card-header {
   font-weight: bold;
   font-size: 0.9rem;

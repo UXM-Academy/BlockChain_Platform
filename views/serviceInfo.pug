@@ -1,0 +1,33 @@
+extends layout
+
+block content
+  //- 판매자 입장에서의 상품정보
+  .container.w-50
+    .main-body
+      //- Breadcrumb
+      .row.gutters-sm
+        .text-center.mt-5
+          h2 상품 정보
+          hr
+        .card.mb-3.border-0.bg-light
+          .row.g-10
+            .col-md-auto
+              img(src='https://images.unsplash.com/photo-1593627129575-7d0c0211c91a?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTh8fHJ1c3NpYW4lMjBibHVlfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60' alt='Admin' width='200' height='200')
+            .col-md-8
+              .card-body
+                //- p.card-title.my-3.fs-2= service.serviceName 
+                p.card-title.my-3.fs-2 serviceName
+                p.card-title.my-3.fs-3 price
+                if currentUser.seller
+                  a.btn.btn-outline-success(href=`/serviceInfoEditor`) 상품정보 수정
+        hr
+        h3.mb-4 상품 소개
+        //- p.mb-3.text-break= service.serviceIntro
+        p.mb-3.text-break serviceIntro
+
+        hr
+        h3.mb-4 리뷰
+        .container
+          .row
+           - for(var i=0; i<5; i++)
+            include starView.pug

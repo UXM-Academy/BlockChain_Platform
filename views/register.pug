@@ -1,34 +1,27 @@
-.container
-  input.file(type='file' name='img' id="img" accept='image/*')
-  .row.g-3.mt-3
-    .col-sm-6
-      label.form-label(for='nickName') 별명 업체명
-      input#nickName.form-control(type='text' placeholder='' value=seller.nickName required='' name="nickName") 
-    .col-sm-6
-      label.form-label(for='phone') 전화번호
-      input#phone.form-control(type='phone' placeholder='' value=seller.phone required='' name="phone" )
-    label.form-label(for='expert')
-      | 전문 분야
-      span.text-muted
-        |  (중복 선택 가능)
-    br
-    .form-check.form-check-inline
-      input#inlineCheckbox1.form-check-input(type='checkbox' value='디자인' name="design")
-      label.form-check-label(for='inlineCheckbox1') 디자인
-    .form-check.form-check-inline
-      input#inlineCheckbox2.form-check-input(type='checkbox' value='프로그래밍' name="programming" )
-      label.form-check-label(for='inlineCheckbox2') IT / 프로그래밍
-    .form-check.form-check-inline
-      input#inlineCheckbox3.form-check-input(type='checkbox' value='사진/영상/음향' name="photo")
-      label.form-check-label(for='inlineCheckbox3') 사진 / 영상 / 음향
-    .col-12
-      label(for='sellerIntro')
-        | 소개 
-        span.text-muted
-          | 학력, 경력, 자격증 등
-      textarea#sellerIntro.form-control(type='text'  required='' name="sellerIntro" rows='5')= seller.sellerIntro
-  hr.my-4
-  button.w-100.btn-outline-success.text-dark.btn-lg(type='submit') 전문가 등록 완료하기
+extends layout
 
-script(src='../assets/dist/js/bootstrap.bundle.min.js')
-script(src='admin.js')
+block content  
+  //- head
+    
+    //- link(rel='stylesheet' href='/stylesheets/style.css')
+      meta(charset='utf-8')
+  link(rel='canonical' href='https://getbootstrap.com/docs/5.0/examples/checkout/')
+  link(rel='stylesheet' type='text/css' href='../stylesheets/register.css')
+
+  //- // Bootstrap core CSS
+  //- link(href='admin.css' rel='stylesheet')
+  
+  //- // Custom styles for this template
+  //- link(href='form-validation.css' rel='stylesheet')
+  //- body
+  .py-5.text-center
+    h2 전문가 등록
+    p.lead 아래 정보를 기입하여 전문가가 되세요!
+  .col-md-10
+    .ml-2.col-sm-6
+      img#preview.img-thumbnail(src='https://placehold.it/200x200' width='200px' height='200px')
+    br
+    form.needs-validatio(novalidate='' action='/users/seller', method='POST')
+      include registerForm.pug
+  //- script(src='../assets/dist/js/bootstrap.bundle.min.js')
+  //- script(src='admin.js')

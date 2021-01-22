@@ -1,0 +1,32 @@
+.container
+  p
+    button#btn-review.btn.btn-primary(type='button' data-bs-toggle='collapse' data-bs-target='#demo' aria-expanded='false' aria-controls='demo')
+      | 리뷰 작성하기
+  #demo.collapse
+    h2 별점 주기
+    .make_star
+      select#makeStar(name='')
+        option(value='1') 1
+        option(value='2') 2
+        option(value='3') 3
+        option(value='4') 4
+        option(value='5') 5
+      .rating(data-rate='3')
+        i.fas.fa-star
+        i.fas.fa-star
+        i.fas.fa-star
+        i.fas.fa-star
+        i.fas.fa-star
+    hr.line
+    .main
+      .main_1.main_common 이번 주문 건 만족했습니다
+    .last
+      a#btn-ok.btn.btn-primary(href='#' role='button') 확인
+//- // 임시
+script.
+  function handleClick() {
+  console.log(true);
+  }
+  const btn = document.querySelector("button");
+  btn.addEventListener("click", handleClick);
+  console.log(btn);

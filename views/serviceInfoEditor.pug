@@ -1,0 +1,38 @@
+extends layout
+
+block content
+  //- head
+    //- link(rel='stylesheet' href='/stylesheets/style.css')
+      meta(charset='utf-8')
+  link(rel='canonical' href='https://getbootstrap.com/docs/5.0/examples/checkout/')
+    //- Bootstrap core CSS
+  link(href='admin.css' rel='stylesheet')
+  style.
+    .container{
+    margin: 0 auto;
+    }
+    .col-md-10{
+    margin: 0 auto 100px auto ;
+    width: 50%;
+    }
+    @media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+    font-size: 3.5rem;
+    }
+    }
+  //- Custom styles for this template
+  link(href='form-validation.css' rel='stylesheet')
+  //- body
+
+
+  .py-5.text-center
+    h2 상품정보 수정
+  .col-md-10
+    .ml-2.col-sm-6
+      img#preview.img-thumbnail(src='https://placehold.it/200x200' width='200px' height='200px')
+    br
+    //- form.needs-validatio(action=`/service/${service._id}?_method=PUT` method='POST' enctype="multipart/form-data")
+    form.needs-validatio(novalidate='' action='', method='POST')
+      include registerServiceFrom.pug 
+
+  script(type='text/javascript' src='/javascripts/popup.js')

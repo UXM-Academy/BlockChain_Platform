@@ -1,19 +1,17 @@
-doctype html
-html
+extends ../layout
+
+block content
   head
     title= title
     //- link(rel='stylesheet' href='/stylesheets/style.css')
-    link(rel='stylesheet' href='/stylesheets/bootstrapCss/bootstrap.min.css')
+    
+    
     link(rel='stylesheet' href="/stylesheets/chat.css")
     link(rel='stylesheet' href="/stylesheets/requestPopup.css")
     link(rel='stylesheet' href="/stylesheets/acceptPopup.css")
-    link(href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css' type='text/css' rel='stylesheet')
-    script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js' integrity='sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW' crossorigin='anonymous')
     
-    script(src="https://cdn.jsdelivr.net/npm/ipfs/dist/index.min.js")
-    script(src="../node_modules/buffer/index.js")
   body
-    include ../clientHeader.pug
+    //- include ../clientHeader.pug
     include chat/chat.pug
     include approval/requestApproval.pug
     include approval/acceptApproval.pug

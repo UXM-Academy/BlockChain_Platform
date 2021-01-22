@@ -1,0 +1,12 @@
+tr
+  th.text-center(scope="row") 
+    div
+      img(src="images/117246.jpg", width="100px")
+      br
+      | 고양이사진
+  td.text-center sam
+  td.text-center 2021/01/19
+  td 
+    button#btn-review.btn.btn-primary(type="button" data-bs-toggle="collapse" data-bs-target="#demo" aria-expanded="false" aria-controls="demo")
+      | 리뷰 작성하기
+    include reviewForm.pug

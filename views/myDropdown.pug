@@ -1,0 +1,14 @@
+link(rel='stylesheet' type='text/css' href='../stylesheets/myDropdown.css')
+.btn-group
+  button.btn.btn-success.dropdown-toggle(type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: #83dcb7; border: none;")
+    span=currentUser.name
+  .dropdown-menu.dropdown-menu-end
+    a.dropdown-item(href="/progressLayout") 구매진행
+    if currentUser.seller
+      a.a.dropdown-item(href=`/users/sellerInfo/${currentUser.id}`) 프로필 보기
+    else
+      a.dropdown-item(href="/completeTransaction") 구매내역
+      a.dropdown-item(href="/register") 판매자 등록
+    a.dropdown-item(href="/store") 지갑관리
+    .dropdown-divider
+    a.dropdown-item(href="/signout") 로그아웃

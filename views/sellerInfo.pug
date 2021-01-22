@@ -1,65 +1,42 @@
-doctype html
-head
-  meta(charset='UTF-8')
-  meta(name='viewport' content='width=device-width, initial-scale=1.0')
-  title Document
-  link(href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1' crossorigin='anonymous')
-  // 판매자 입장에서의 판매자 프로필
-include toolbar.pug
-.container.w-50
-  .main-body
-    // /Breadcrumb
-    .row.gutters-sm
-      .text-center.mt-5
-        h2 판매자 정보
+extends layout
+
+block content
+  //- 판매자 입장에서의 판매자 프로필
+  .container.w-50
+    .main-body
+      //- Breadcrumb
+      .row.gutters-sm
+        .text-center.mt-5
+          h2 판매자 정보
+          hr
+        .card.mb-3.border-0.bg-light
+          .row.g-10
+            .col-md-auto
+              img(src='https://images.unsplash.com/photo-1593627129575-7d0c0211c91a?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTh8fHJ1c3NpYW4lMjBibHVlfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60' alt='Admin' width='200' height='200')
+            .col-md-8
+              .card-body
+                p.card-title.my-3.fs-2= seller.nickName 
+                br
+                a.btn.btn-lg.btn-outline-success(href=`/users/seller/edit/${currentUser.id}`) 정보수정
+        h5.mb-4 전문 분야
+        oi.mb-3
+          each el in seller.major
+            span.badge.rounded-pill.bg-success.fs-6.p-2= el
+            span &nbsp;
         hr
-      .card.mb-3.border-0.bg-light
-        .row.g-10
-          .col-md-auto
-            img(src='https://images.unsplash.com/photo-1593627129575-7d0c0211c91a?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTh8fHJ1c3NpYW4lMjBibHVlfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60' alt='Admin' width='200' height='200')
-          .col-md-8
-            .card-body
-              p.card-title.my-3.fs-2= seller.nickName 
-              br
-              a.btn.btn-lg.btn-outline-success(href=`/users/seller/edit/${currentUser.id}`) 정보수정
-      h5.mb-4 전문 분야
-      oi.mb-3
-        each el in seller.major
-          span.badge.rounded-pill.bg-success.fs-6.p-2= el
-          span &nbsp;
+        h3.mb-4 소개
+        p.mb-3.text-break= seller.sellerIntro
+        hr
+      //- <!--판매상품을 가져와서 나열해야함...-->
 
-      hr
-      h3.mb-4 소개
-      p.mb-3.text-break= seller.sellerIntro
-
-      script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js' integrity='sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW' crossorigin='anonymous')        p.mb-1 ***
-        p.mb-1 ***
-      hr
-    .container
-      .row
-        .col-sm.ms-0
-          h3.mb-4 &#xD310; &#xB9E4; &#xC0C1; &#xD488;
-    .row.text-center
-      .col-lg-4
-        img(src='https://images.unsplash.com/photo-1598379930661-b0c5701f8eb7?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MzZ8fHBob3RvJTIwZWRpdG9yfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60' alt='Admin' width='200' height='200')
-        h3.mt-3 &#xC2A4;&#xD29C;&#xB514;&#xC624; &#xCD2C;&#xC601;
-        p &#xC2A4;&#xD29C;&#xB514;&#xC624;&#xC5D0;&#xC11C; &#xBA4B;&#xC788;&#xB294; &#xC0AC;&#xC9C4;&#xC744; &#xCC0D;&#xC5B4;&#xB4DC;&#xB9BD;&#xB2C8;&#xB2E4;
-        p
-          a.btn.btn-outline-success(href='#' role='button') &#xB354; &#xC54C;&#xC544;&#xBCF4;&#xAE30; &raquo;
-      // /.col-lg-4
-      .col-lg-4
-        img(src='https://images.unsplash.com/photo-1534131707746-25d604851a1f?ixid=MXwxMjA3fDB8MHxzZWFyY2h8Mnx8Y2FtZXJhfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60' alt='Admin' width='200' height='200')
-        h3.mt-3 &#xC778;&#xC0DD;&#xC0F7;
-        p &#xC778;&#xC2A4;&#xD0C0; &#xAC10;&#xC131; &#xC778;&#xC0DD;&#xC0F7; &#xAC74;&#xC9C0;&#xAE30;
-        p
-          a.btn.btn-outline-success(href='#' role='button') &#xB354; &#xC54C;&#xC544;&#xBCF4;&#xAE30; &raquo;
-      // /.col-lg-4
-      .col-lg-4
-        img(src='https://images.unsplash.com/photo-1557804506-e969d7b32a4b?ixid=MXwxMjA3fDB8MHxzZWFyY2h8Mjh8fHBob3RvJTIwZWRpdG9yfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60' alt='Admin' width='200' height='200')
-        h3.mt-3 &#xC720;&#xD29C;&#xBE0C; &#xCD2C;&#xC601;
-        p &#xD004;&#xB9AC;&#xD2F0; &#xC788;&#xB294; &#xC601;&#xC0C1; &#xCD2C;&#xC601;/&#xD3B8;&#xC9D1;
-        p
-          a.btn.btn-outline-success(href='#' role='button') &#xB354; &#xC54C;&#xC544;&#xBCF4;&#xAE30; &raquo;
-      // /.col-lg-4
-    // /.row
-    script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js' integrity='sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW' crossorigin='anonymous')
+      .container
+        .row
+          .col-sm.ms-0
+            h3.mb-4 판매상품
+          .col-sm.position-relative
+            a.btn.btn-outline-success.position-absolute.top-0.end-0(href=`/registerService`) 새로운 상품 등록
+        .row
+          - for(var i=0; i<3; i++)
+            include categoryElement.pug
+  
+      script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js' integrity='sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW' crossorigin='anonymous')   

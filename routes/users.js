@@ -54,15 +54,6 @@ router.get("/home", function (req, res, next) {
 });
 
 router.get(
-  "/sellerInfo/:id",
-  needAuth,
-  catchErrors(async (req, res, next) => {
-    var seller = await Seller.findOne({ seller_id: req.params.id });
-    res.render("sellerInfo", { seller: seller });
-  })
-);
-
-router.get(
   "/seller/edit/:id",
   needAuth,
   catchErrors(async (req, res, next) => {
@@ -71,6 +62,22 @@ router.get(
   })
 );
 
+router.get(
+  "/sellerInfo/:id",
+  needAuth,
+  catchErrors(async (req, res, next) => {
+    var seller = await Seller.findOne({ seller_id: req.params.id });
+    res.render("sellerInfo", { seller: seller });
+  })
+);
+router.get(
+  "/seller/edit/:id",
+  needAuth,
+  catchErrors(async (req, res, next) => {
+    var seller = await Seller.findOne({ seller_id: req.params.id });
+    res.render("sellerInfoEditor", { seller: seller });
+  })
+);
 router.post(
   "/",
   catchErrors(async (req, res, next) => {

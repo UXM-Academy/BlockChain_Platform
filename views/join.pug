@@ -1,27 +1,37 @@
-.container
-  .row
-    .col-sm
-    .col-sm
-      //- 점보트론
-      .jumbotron(style='padding-top: 20px;')
-        //- 로그인 정보를 숨기면서 전송post
-        form(method='post' action='/users')
-          h3(style='text-align: center;') &#xD68C;&#xC6D0;&#xAC00;&#xC785;
-          .form-group
-            div
-              label(for='text') &#xC774;&#xB984;
-            input.form-control(type='text' placeholder='이름(실명)을 입력해주세요' name='userName' id='userName')
-          .form-group
-            div
-              label(for='number') &#xC774;&#xBA54;&#xC77C;
-            input.form-control(type='text' placeholder='example@mjmong.com' name='userID' id='userName')
-          .form-group
-            div
-              label(for='number') &#xBE44;&#xBC00;&#xBC88;&#xD638;
-            input.form-control(type='password' placeholder='영문+숫자 조합 8자리 이상 입력해주세요' name='userPassword' id='userName')
-          br
-          input.btn.btn-primary.form-control(type='submit' value='회원가입')
-          button.google.btn.btn-success.form-control(type='submit')
-            i.fa.fa-google-plus(aria-hidden="true")
-            |  구글로 시작
-    .col-sm
+extends layout
+
+block content
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title Document
+    link(rel="stylesheet", href="/stylesheets/join.css")
+    
+  body
+    .container
+      .row
+        .col-sm
+        .col-sm
+          //- 점보트론
+          .jumbotron(style='padding-top: 20px;')
+            //- 로그인 정보를 숨기면서 전송post
+            form(method='post' action='/users')
+              h3(style='text-align: center;') &#xD68C;&#xC6D0;&#xAC00;&#xC785;
+              .form-group
+                div
+                  label(for='text') &#xC774;&#xB984;
+                input.form-control(type='text' placeholder='이름(실명)을 입력해주세요' name='userName' id='userName')
+              .form-group
+                div
+                  label(for='number') &#xC774;&#xBA54;&#xC77C;
+                input.form-control(type='text' placeholder='example@mjmong.com' name='userID' id='userName')
+              .form-group
+                div
+                  label(for='number') &#xBE44;&#xBC00;&#xBC88;&#xD638;
+                input.form-control(type='password' placeholder='영문+숫자 조합 8자리 이상 입력해주세요' name='userPassword' id='userName')
+              br
+              input.btn.btn-primary.form-control(type='submit' value='회원가입')
+              button.google.btn.btn-success.form-control(type='submit')
+                i.fa.fa-google-plus(aria-hidden="true")
+                |  구글로 시작
+        .col-sm

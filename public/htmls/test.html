@@ -1,58 +1,64 @@
 <html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Popup chang</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+      type="text/css"
+      rel="stylesheet"
+    />
+  </head>
 
-<head>
-  <meta charset="utf-8">
-  <title>Popup chang</title>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" rel="stylesheet">
-</head>
+  <body>
+    <h1>타겟 사이트</h1>
+    <!-- 버튼 -->
+    <button class="trigger">버튼</button>
 
-<body>
-  <h1>타겟 사이트</h1>
-  <!-- 버튼 -->
-  <button class="trigger">버튼</button>
-
-  <!-- 레이어 팝업 창-->
-  <div class="modal">
-    <div class="modal-content">
-      <span class="close-button">&times;</span>
-      <h1 class="title">받은 메세지</h1>
-      <form action="#post.php" method="POST">
-        <button class="file-download" type="button">
-          <i class="fa fa-download" aria-hidden="true"></i>
-        </button>
-        <div class="wrapper">
-          <div><label for="number">주문번호</label></div>
-          <div style="padding-top: 16px;">lsafhoas</div>
-          <div><label for="messages">내용</label></div>
-          <div style="padding-top: 16px;">asdfasdf</div>
-          <div><label for="date">수신일</label></div>
-          <div style="padding-top: 16px;">asdfasdfas</div>
-        </div>
-        <input type="button" id="ok" value="수락">
-        <input type="button" id="cancel" value="거절">
-      </form>
+    <!-- 레이어 팝업 창-->
+    <div class="modal">
+      <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <h1 class="title">받은 메세지</h1>
+        <form action="#post.php" method="POST">
+          <button class="file-download" type="button">
+            <i class="fa fa-download" aria-hidden="true"></i>
+          </button>
+          <div class="wrapper">
+            <div><label for="number">주문번호</label></div>
+            <div style="padding-top: 16px">lsafhoas</div>
+            <div><label for="messages">내용</label></div>
+            <div style="padding-top: 16px">asdfasdf</div>
+            <div><label for="date">수신일</label></div>
+            <div style="padding-top: 16px">asdfasdfas</div>
+          </div>
+          <input type="button" id="ok" value="수락" />
+          <input type="button" id="cancel" value="거절" />
+        </form>
+      </div>
     </div>
-  </div>
+    <button data-toggle="collapse" data-target="#demo">Collapsible</button>
 
-  <script type="text/javascript">
-    var modal = document.querySelector(".modal");
-    var trigger = document.querySelector(".trigger");
-    var closeButton = document.querySelector(".close-button");
+    <div id="demo" class="collapse">Lorem ipsum dolor text....</div>
+    <script type="text/javascript">
+      var modal = document.querySelector(".modal");
+      var trigger = document.querySelector(".trigger");
+      var closeButton = document.querySelector(".close-button");
 
-    //console.log(modal);
+      //console.log(modal);
 
-    function toggleModal() {
-      modal.classList.toggle("show-modal");
-    }
-
-    function windowOnClick(event) {
-      if (event.target === modal) {
-        toggleModal();
+      function toggleModal() {
+        modal.classList.toggle("show-modal");
       }
-    }
 
-    trigger.addEventListener("click", toggleModal);
-    closeButton.addEventListener("click", toggleModal);
-    window.addEventListener("click", windowOnClick);
-  </script>
-  
+      function windowOnClick(event) {
+        if (event.target === modal) {
+          toggleModal();
+        }
+      }
+
+      trigger.addEventListener("click", toggleModal);
+      closeButton.addEventListener("click", toggleModal);
+      window.addEventListener("click", windowOnClick);
+    </script>
+  </body>
+</html>

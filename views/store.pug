@@ -1,51 +1,51 @@
-doctype html
-html(lang="en")
-  head
-    meta(charset="UTF-8")
-    meta(name="viewport" content="width=device-width, initial-scale=1.0")
-    title Document
-    link(rel="stylesheet", href="/stylesheets/store.css")
+extends layout
 
-  body
-    .card.mt-50.mb-50
-      .card-title.mx-auto Store
-      .nav
-        ul.mx-auto
-          li.active.deposit
-            | Coin 입금
-          li.withdraw
-            | Coin 출금
-      form
-        span#card-header 
+block content
+  //- head
+  
+  link(rel="stylesheet", href="/stylesheets/store.css")
+  
+  //- body
+  .card.mt-50.mb-50
+    .card-title.mx-auto Store
+    .nav
+      ul.mx-auto
+        li.active.deposit
+          | Coin 입금
+        li.withdraw
+          | Coin 출금
+    form
+      span#card-header 
+        span.change_word 입금
+        | 하기
+      .row.row-1
+        .col
+          img.img-fluid(src="images/mjmong_logo.jpg")
+        .col-7
+          input.money(type="number" placeholder="금액입력" style="text-align: right")
+        .col-3.d-flex
+          .token_unit MJC
+      span#card-header 결제정보
+      .container
+        .row
+          .col-sm-10
+            div 나의 지갑 잔액
+            div 
+              span.change_word 입금
+              |  금액
+          .col-sm
+            .font-weight-bold.balance 0 MJC
+            .font-weight-bold.add_money 0 MJC
+        hr
+        .row
+          .col-sm-10
+            div 
+              span.change_word 입금
+              |  후의 지갑 잔액
+          .col-sm
+            .font-weight-bold.total 0 MJC
+      button.pay-btn.d-flex.mx-auto
+        b 
           span.change_word 입금
-          | 하기
-        .row.row-1
-          .col
-            img.img-fluid(src="images/mjmong_logo.jpg")
-          .col-7
-            input.money(type="number" placeholder="금액입력" style="text-align: right")
-          .col-3.d-flex
-            .token_unit MJC
-        span#card-header 결제정보
-        .container
-          .row
-            .col-sm-10
-              div 나의 지갑 잔액
-              div 
-                span.change_word 입금
-                |  금액
-            .col-sm
-              .font-weight-bold.balance 0 MJC
-              .font-weight-bold.add_money 0 MJC
-          hr
-          .row
-            .col-sm-10
-              div 
-                span.change_word 입금
-                |  후의 지갑 잔액
-            .col-sm
-              .font-weight-bold.total 0 MJC
-        button.pay-btn.d-flex.mx-auto
-          b 
-            span.change_word 입금
-            |  요청
+          |  요청
+  script(src="javascripts/store.js")
