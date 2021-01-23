@@ -1,59 +1,70 @@
-// require("../../../node_modules/buffer");
 require("buffer");
+
+const fileElement = document.getElementById("progressfile");
+const contentElement = document.getElementById("progresscontent");
+const fileSend = document.getElementById("fileSend");
+
+let ipfs;
+// 나중에 스마트 컨트랙트에 저장될 부분
+let root = "";
+const reader = new window.FileReader()
+
 window.addEventListener("load", async () => {
-  if (typeof ipfs === 'undefined') {
-    const ipfs = await Ipfs.create({ repo: 'ipfs-' + Math.random() })
+  if (typeof ipfs !== 'null') {
+    ipfs = await Ipfs.create({ repo: 'ipfs-' + Math.random() })
     console.log(ipfs)
-    console.log(Ipfs)
-    console.log(Buffer.from("asd"))
   }else {
     console.log("이미 있음")
   }
 })
 
+fileElement.addEventListener("change", handleFiles);
+fileSend.addEventListener("click", handlebuttons);
 
+//이 정보를 react에 전달해서 컴포넌트 생성
+const traversePosts = async (cid) => {
+  const result = []
+  while (cid) {
+    const current = await ipfs.dag.get(cid)
+    const prev = current.value.prev
+    result.push(current.value)
+    if (prev != "") {
+      cid = prev
+    } else {
+      return result
+    }
+  }
+}
 
-// const fileElement = document.getElementById("progressfile");
-// const contentElement = document.getElementById("progresscontent");
-// const fileSend = document.getElementById("fileSend");
+function handleFiles(event) {
+  const file = event.target.files[0];
+  const fileName = event.target.files[0]['name']
+  // reader.onloadend = () => {console.log(reader), console.log(file)}
+  reader.readAsArrayBuffer(file)
+}
 
-// const reader = new window.FileReader()
-
-// fileElement.addEventListener("change", handleFiles);
-// fileSend.addEventListener("click", handlebuttons);
-
-// function handlebuttons(event) {
-//   content = contentElement.value
-//   const filebuffer = Buffer.from(reader.result);
-//   console.log(filebuffer);
+async function handlebuttons(event){
+  const content = contentElement.value
+  const filebuffer = Buffer.from(reader.result);
   
-// }
+  const messageCid = await ipfs.dag.put({
+    content: content,
+    file : filebuffer,
+    prev : root
+  })
+  root = messageCid.toString();
+  console.log(root);
+  console.log(traversePosts(root));
+}
 
 
-// function handleFiles(event) {
-//   const file = event.target.files[0];
-//   const fileName = event.target.files[0]['name']
-//   // reader.onloadend = () => {console.log(reader), console.log(file)}
-//   reader.readAsArrayBuffer(file)
-// }
+
+
 
 
 
 
 // 'use strict'
-// const traversePosts = async (cid) => {
-//   const result = []
-//   while (cid) {
-//     result.push(cid)
-//     const current = await ipfs.dag.get(cid)
-//     const prev = current.value.prev
-//     if (prev) {
-//       cid = prev
-//     } else {
-//       return result
-//     }
-//   }
-// }
 
 // window.addEventListener("load", async () => {
 //   if (typeof ipfs === 'undefined') {
