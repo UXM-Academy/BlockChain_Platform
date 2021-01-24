@@ -2,6 +2,16 @@ script(src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap
 .container
   input.file(type='file' name='img' id="img" accept='image/*')
   .row.g-3.mt-3
+    .form-check.form-check-inline
+      input#inlineRadio1.form-check-input(type='radio' name='inlineRadioOptions' value='디자인')
+      label.form-check-label(for='inlineRadio1') 디자인
+    .form-check.form-check-inline
+      input#inlineRadio2.form-check-input(type='radio' name='inlineRadioOptions' value='프로그래밍')
+      label.form-check-label(for='inlineRadio2') IT / 프로그래밍
+    .form-check.form-check-inline
+      input#inlineRadio3.form-check-input(type='radio' name='inlineRadioOptions' value='사진/영상/음향')
+      label.form-check-label(for='inlineRadio3') 사진 / 영상 / 음향
+
     .col-sm-6
       label.form-label(for='serviceName') 상품 및 서비스명
       //- input#serviceName.form-control(type='text' placeholder='' value=service.serviceName required='' name="serviceName") 

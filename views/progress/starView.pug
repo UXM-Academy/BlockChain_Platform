@@ -1,0 +1,41 @@
+html
+  head
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js")
+    script(src="../javascripts/star.js")
+  body
+    h2 별점 표시하기
+    .review
+      .rating(data-rate="3")
+        i.fas.fa-star
+        i.fas.fa-star
+        i.fas.fa-star
+        i.fas.fa-star
+        i.fas.fa-star
+      .rating(data-rate="5")
+        i.fas.fa-star
+        i.fas.fa-star
+        i.fas.fa-star
+        i.fas.fa-star
+        i.fas.fa-star
+      .rating(data-rate="2")
+        i.fas.fa-star
+        i.fas.fa-star
+        i.fas.fa-star
+        i.fas.fa-star
+        i.fas.fa-star
+    hr
+    h2 별점주기
+    .make_star
+      select#makeStar(name="")
+        option(value="1") 1
+        option(value="2") 2
+        option(value="3") 3
+        option(value="4") 4
+        option(value="5") 5
+      .rating(data-rate="3")
+        i.fas.fa-star
+        i.fas.fa-star
+        i.fas.fa-star
+        i.fas.fa-star
+        i.fas.fa-star

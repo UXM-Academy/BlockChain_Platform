@@ -17,6 +17,13 @@ html
 
     link(rel='stylesheet' href='/stylesheets/style.css')
     //- link(rel='stylesheet' href="/stylesheets/popup.css")
+    //- script(src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.36/dist/web3.min.js")
+    //- script(src="https://unpkg.com/@metamask/detect-provider/dist/detect-provider.min.js")
+    script(src="https://cdn.ethers.io/lib/ethers-5.0.umd.min.js" type="application/javascript")
+
+    //- contract_abi
+    script(src="/javascripts/contractABI.js")
+    script(src="/javascripts/web3.js")
   body
     include toolbar
     block content
@@ -30,3 +37,5 @@ html
     //- script(src="javascripts/requestApproval.js")
     script(src="javascripts/outgoingMsg.js")
     script(src="javascripts/incomingMsg.js")
+    
+    
