@@ -1,5 +1,7 @@
 let myContract;
 let userAccounts;
+const provider = new ethers.providers.Web3Provider(window.ethereum);
+const signer = provider.getSigner();
 /*****************************************/
 /* Detect the MetaMask Ethereum provider */
 /*****************************************/
@@ -7,8 +9,6 @@ let userAccounts;
 
 // this returns the provider, or null if it wasn't detected
 async function init() {
-  const provider = new ethers.providers.Web3Provider(window.ethereum);
-  const signer = provider.getSigner();
   console.log(`provider`);
   console.log(provider);
   console.log(`signer`);
@@ -27,6 +27,7 @@ async function init() {
   /* Handle user accounts and accountsChanged (per EIP-1193) */
   /***********************************************************/
   userAccounts = await ethereum.request({ method: "eth_requestAccounts" });
+  console.log(`userAccounts`);
   console.log(userAccounts);
   ethereum
     // .request({ method: "eth_accounts" })
@@ -57,14 +58,10 @@ function startApp(provider) {
   if (provider.provider !== window.ethereum) {
     console.error("Do you have multiple wallets installed?");
   } else {
-    const contractAddress = "0xf7d9906da21E0EF6b86553fF0b4acbd4F98d1621";
+    const contractAddress = "0x6a2F3418e4bb9415dE3c5049BC7942baEF24Bcd0";
     // myContract = new web3js.eth.Contract(abi, contractAddress);
-    const myContract = new ethers.Contract(
-      contractAddress,
-      contractABI,
-      provider
-    );
-    console.log(myContract.getTrade);
+    myContract = new ethers.Contract(contractAddress, contractABI, signer);
+    console.log(myContract);
   }
 
   // Access the decentralized web!
