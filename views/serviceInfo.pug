@@ -19,7 +19,8 @@ block content
                 p.card-title.my-3.fs-2 serviceName
                 p.card-title.my-3.fs-3 price
                 if currentUser.seller
-                  a.btn.btn-outline-success(href=`/serviceInfoEditor`) 상품정보 수정
+                  a.btn.btn-outline-success(href=`/serviceInfoEditor` style="position: relative; left: 55%;") 상품정보 수정
+                button#buyBtn.btn.btn-outline-success(style="position: relative; left: 60%;") 구매하기
         hr
         h3.mb-4 상품 소개
         //- p.mb-3.text-break= service.serviceIntro
@@ -29,5 +30,7 @@ block content
         h3.mb-4 리뷰
         .container
           .row
-           - for(var i=0; i<5; i++)
+          - for(var i=0; i<5; i++)
             include starView.pug
+  script(src="javascripts/tradeDeploy.js")
+
