@@ -2,8 +2,6 @@
 
 const e = React.createElement;
 
-const data = ["1", "2"];
-
 class IncomingMsg extends React.Component {
   constructor(props) {
     super(props);

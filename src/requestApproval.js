@@ -1,5 +1,4 @@
 "use strict";
-
 class RequestApproval extends React.Component {
   constructor(props) {
     super(props);
@@ -15,6 +14,13 @@ class RequestApproval extends React.Component {
       author: "",
       prev: "",
     };
+  }
+  componentDidMount() {
+    window.addEventListener("load", this.fileHandle)
+  }
+
+  fileHandle = async () => {
+    
   }
 
   render() {
