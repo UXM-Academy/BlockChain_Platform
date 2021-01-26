@@ -3,11 +3,11 @@
     span.close-button.request_close_btn &times;
     h1.title &#xC9C4;&#xD589;&#xC0C1;&#xD669; &#xC2B9;&#xC778; &#xC694;&#xCCAD;
     #requestApproval
-    form.request(action='#post.php' method='POST' enctype='multipart/form-data')
+    form.request()
       label(for='progress') &#xC9C4;&#xD589;&#xC0C1;&#xD669;
-      input(type='progress' name='progress' placeholder='진행상황을 입력해주세요.' required='required')
+      input(type='progress' name='progress' placeholder='진행상황을 입력해주세요.' required='required' id="progresscontent")
       label(for='picture') &#xC0AC;&#xC9C4;
-      input(type='file' name='FileName')
+      input(type='file' name='FileName' id="progressfile")
       //- input#cancel(type='button' value='취소')
-      input.ok.request_close_btn(type='button' value='보내기' style="margin-top:20px")
+      button#fileSend.ok.request_close_btn(type='button' value='보내기' style="margin-top:20px")
       input.cancel.request_close_btn(type='button' value='취소' style="margin-top:20px")

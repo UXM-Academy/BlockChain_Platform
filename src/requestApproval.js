@@ -15,13 +15,7 @@ class RequestApproval extends React.Component {
       prev: "",
     };
   }
-  componentDidMount() {
-    window.addEventListener("load", this.fileHandle)
-  }
-
-  fileHandle = async () => {
-    
-  }
+  
 
   render() {
     return (
