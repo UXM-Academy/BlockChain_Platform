@@ -9,7 +9,6 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var e = React.createElement;
-var data = { "a": "b" };
 
 var IncomingMsg = function (_React$Component) {
   _inherits(IncomingMsg, _React$Component);
@@ -36,16 +35,32 @@ var IncomingMsg = function (_React$Component) {
     value: function render() {
       return React.createElement(
         "div",
-        null,
+        { className: "incoming_msg" },
         React.createElement(
-          "p",
-          null,
-          data.a
+          "div",
+          { className: "incoming_msg_img" },
+          React.createElement("img", {
+            src: "https://ptetutorials.com/images/user-profile.png",
+            alt: "seller"
+          })
         ),
         React.createElement(
-          "span",
-          { className: "time_date" },
-          " 11:01 AM | Today"
+          "div",
+          { className: "received_msg" },
+          React.createElement(
+            "div",
+            { className: "received_withd_msg" },
+            React.createElement(
+              "p",
+              null,
+              "Apollo University, Delhi, India Test"
+            ),
+            React.createElement(
+              "span",
+              { className: "time_date" },
+              " 11:01 AM | Today"
+            )
+          )
         )
       );
     }
@@ -53,15 +68,21 @@ var IncomingMsg = function (_React$Component) {
 
   return IncomingMsg;
 }(React.Component);
+// .incoming_msg
+//   .incoming_msg_img
+//     img(src='https://ptetutorials.com/images/user-profile.png' alt='sunil')
+//   .received_msg
+//     #incomingMsg.received_withd_msg
+
+
+export default IncomingMsg;
 // Find all DOM containers, and render Like buttons into them.
 // domContainer = document.querySelector("#acceptApproval");
 // console.log("true");
 // ReactDOM.render(e(AcceptApproval), domContainer);
 // ReactDOM.render(<AcceptApproval></AcceptApproval>);
-
-
-document.querySelectorAll("#incomingMsg").forEach(function (domContainer) {
-  // Read the comment ID from a data-* attribute.
-  console.log(domContainer);
-  ReactDOM.render(e(IncomingMsg), domContainer);
-});
+// document.querySelectorAll("#incomingMsg").forEach((domContainer) => {
+//   // Read the comment ID from a data-* attribute.
+//   console.log(domContainer);
+//   ReactDOM.render(e(IncomingMsg), domContainer);
+// });

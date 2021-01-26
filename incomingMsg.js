@@ -35,16 +35,32 @@ var IncomingMsg = function (_React$Component) {
     value: function render() {
       return React.createElement(
         "div",
-        null,
+        { className: "incoming_msg" },
         React.createElement(
-          "p",
-          null,
-          "Apollo University, Delhi, India Test"
+          "div",
+          { className: "incoming_msg_img" },
+          React.createElement("img", {
+            src: "https://ptetutorials.com/images/user-profile.png",
+            alt: "seller"
+          })
         ),
         React.createElement(
-          "span",
-          { className: "time_date" },
-          " 11:01 AM | Today"
+          "div",
+          { className: "received_msg" },
+          React.createElement(
+            "div",
+            { className: "received_withd_msg" },
+            React.createElement(
+              "p",
+              null,
+              "Apollo University, Delhi, India Test"
+            ),
+            React.createElement(
+              "span",
+              { className: "time_date" },
+              " 11:01 AM | Today"
+            )
+          )
         )
       );
     }
@@ -52,15 +68,21 @@ var IncomingMsg = function (_React$Component) {
 
   return IncomingMsg;
 }(React.Component);
+// .incoming_msg
+//   .incoming_msg_img
+//     img(src='https://ptetutorials.com/images/user-profile.png' alt='sunil')
+//   .received_msg
+//     #incomingMsg.received_withd_msg
+
+
+export default IncomingMsg;
 // Find all DOM containers, and render Like buttons into them.
 // domContainer = document.querySelector("#acceptApproval");
 // console.log("true");
 // ReactDOM.render(e(AcceptApproval), domContainer);
 // ReactDOM.render(<AcceptApproval></AcceptApproval>);
-
-
-document.querySelectorAll("#incomingMsg").forEach(function (domContainer) {
-  // Read the comment ID from a data-* attribute.
-  console.log(domContainer);
-  ReactDOM.render(e(IncomingMsg), domContainer);
-});
+// document.querySelectorAll("#incomingMsg").forEach((domContainer) => {
+//   // Read the comment ID from a data-* attribute.
+//   console.log(domContainer);
+//   ReactDOM.render(e(IncomingMsg), domContainer);
+// });

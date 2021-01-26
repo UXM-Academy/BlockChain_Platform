@@ -35,16 +35,20 @@ var OutgoingMsg = function (_React$Component) {
     value: function render() {
       return React.createElement(
         "div",
-        null,
+        { className: "outgoing_msg" },
         React.createElement(
-          "p",
-          null,
-          "Apollo University, Delhi, India Test"
-        ),
-        React.createElement(
-          "span",
-          { className: "time_date" },
-          " 11:01 AM | Today"
+          "div",
+          { className: "sent_msg" },
+          React.createElement(
+            "p",
+            null,
+            "Apollo University, Delhi, India Test"
+          ),
+          React.createElement(
+            "span",
+            { className: "time_date" },
+            " 11:01 AM | Today"
+          )
         )
       );
     }
@@ -52,15 +56,15 @@ var OutgoingMsg = function (_React$Component) {
 
   return OutgoingMsg;
 }(React.Component);
+
+export default OutgoingMsg;
 // Find all DOM containers, and render Like buttons into them.
 // domContainer = document.querySelector("#acceptApproval");
 // console.log("true");
 // ReactDOM.render(e(AcceptApproval), domContainer);
 // ReactDOM.render(<AcceptApproval></AcceptApproval>);
-
-
-document.querySelectorAll("#outgoingMsg").forEach(function (domContainer) {
-  // Read the comment ID from a data-* attribute.
-  console.log(domContainer);
-  ReactDOM.render(e(OutgoingMsg), domContainer);
-});
+// document.querySelectorAll("#outgoingMsg").forEach((domContainer) => {
+//   // Read the comment ID from a data-* attribute.
+//   console.log(domContainer);
+//   ReactDOM.render(e(OutgoingMsg), domContainer);
+// });
