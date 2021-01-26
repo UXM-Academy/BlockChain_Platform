@@ -19,20 +19,23 @@ class OutgoingMsg extends React.Component {
 
   render() {
     return (
-      <div>
-        <p>Apollo University, Delhi, India Test</p>
-        <span className="time_date"> 11:01 AM | Today</span>
+      <div className="outgoing_msg">
+        <div className="sent_msg">
+          <p>Apollo University, Delhi, India Test</p>
+          <span className="time_date"> 11:01 AM | Today</span>
+        </div>
       </div>
     );
   }
 }
+export default OutgoingMsg;
 // Find all DOM containers, and render Like buttons into them.
 // domContainer = document.querySelector("#acceptApproval");
 // console.log("true");
 // ReactDOM.render(e(AcceptApproval), domContainer);
 // ReactDOM.render(<AcceptApproval></AcceptApproval>);
-document.querySelectorAll("#outgoingMsg").forEach((domContainer) => {
-  // Read the comment ID from a data-* attribute.
-  console.log(domContainer);
-  ReactDOM.render(e(OutgoingMsg), domContainer);
-});
+// document.querySelectorAll("#outgoingMsg").forEach((domContainer) => {
+//   // Read the comment ID from a data-* attribute.
+//   console.log(domContainer);
+//   ReactDOM.render(e(OutgoingMsg), domContainer);
+// });

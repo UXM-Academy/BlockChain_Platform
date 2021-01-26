@@ -3,7 +3,7 @@ let trigger = document.querySelectorAll(".trigger");
 let closeButton = document.querySelectorAll(".close-button");
 let cancelButton = document.querySelectorAll(".cancel");
 let okButton = document.querySelectorAll(".ok");
-document.body.classList.contains;
+console.log(trigger.length);
 
 //console.log(modal);
 
@@ -37,10 +37,14 @@ function windowOnClick(event) {
   }
 }
 
-trigger[0].addEventListener("click", toggleModal);
-trigger[1].addEventListener("click", toggleModal);
-closeButton[0].addEventListener("click", cancelToggle);
-closeButton[1].addEventListener("click", cancelToggle);
+if (trigger.length !== 0) {
+  trigger[0].addEventListener("click", toggleModal);
+  trigger[1].addEventListener("click", toggleModal);
+}
+if (closeButton.length !== 0) {
+  closeButton[0].addEventListener("click", cancelToggle);
+  closeButton[1].addEventListener("click", cancelToggle);
+}
 
 for (let i = 0; i < cancelButton.length; i++) {
   closeButton[0].addEventListener("click", cancelToggle);

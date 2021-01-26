@@ -10,17 +10,17 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var e = React.createElement;
 
-var OutgoingMsg = function (_React$Component) {
-  _inherits(OutgoingMsg, _React$Component);
+var RequestMsg = function (_React$Component) {
+  _inherits(RequestMsg, _React$Component);
 
-  function OutgoingMsg(props) {
-    _classCallCheck(this, OutgoingMsg);
+  function RequestMsg(props) {
+    _classCallCheck(this, RequestMsg);
 
     // 파일 cid 다운 받기를 누르면 읽기(필요가 있을때 복호화)
     // content(메시지) cid 바로 읽기(복호화)
     // author: 판매자 id
     // prev: cid
-    var _this = _possibleConstructorReturn(this, (OutgoingMsg.__proto__ || Object.getPrototypeOf(OutgoingMsg)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (RequestMsg.__proto__ || Object.getPrototypeOf(RequestMsg)).call(this, props));
 
     console.log(true);
     _this.state = {
@@ -30,41 +30,65 @@ var OutgoingMsg = function (_React$Component) {
     return _this;
   }
 
-  _createClass(OutgoingMsg, [{
+  _createClass(RequestMsg, [{
     key: "render",
     value: function render() {
       return React.createElement(
         "div",
-        { className: "outgoing_msg" },
+        { className: "incoming_msg" },
         React.createElement(
           "div",
-          { className: "sent_msg" },
+          { className: "incoming_msg_img" },
+          React.createElement("img", {
+            src: "https://ptetutorials.com/images/user-profile.png",
+            alt: "seller"
+          })
+        ),
+        React.createElement(
+          "div",
+          { className: "received_msg" },
           React.createElement(
-            "p",
-            null,
-            "Apollo University, Delhi, India Test"
-          ),
-          React.createElement(
-            "span",
-            { className: "time_date" },
-            " 11:01 AM | Today"
+            "div",
+            { className: "received_withd_msg" },
+            React.createElement(
+              "p",
+              null,
+              "\uACE0\uAC1D\uB2D8 \uC0C1\uD488\uC758 \uC81C\uC791 \uC794\uD589\uC744 \uC704\uD574",
+              React.createElement("br", null),
+              "\uC791\uC5C5 \uC2B9\uC778\uC744 \uBD80\uD0C1\uB4DC\uB9BD\uB2C8\uB2E4.",
+              React.createElement("br", null),
+              React.createElement(
+                "button",
+                { type: "button", className: "btn btn-success trigger" },
+                "\uC790\uC138\uD788 \uBCF4\uAE30"
+              ),
+              React.createElement(
+                "span",
+                { className: "time_date" },
+                "11:01 AM | June 9"
+              )
+            )
           )
         )
       );
     }
   }]);
 
-  return OutgoingMsg;
+  return RequestMsg;
 }(React.Component);
 
-export default OutgoingMsg;
-// Find all DOM containers, and render Like buttons into them.
-// domContainer = document.querySelector("#acceptApproval");
-// console.log("true");
-// ReactDOM.render(e(AcceptApproval), domContainer);
-// ReactDOM.render(<AcceptApproval></AcceptApproval>);
-// document.querySelectorAll("#outgoingMsg").forEach((domContainer) => {
-//   // Read the comment ID from a data-* attribute.
-//   console.log(domContainer);
-//   ReactDOM.render(e(OutgoingMsg), domContainer);
-// });
+// .incoming_msg
+//   .incoming_msg_img
+//     img(src='https://ptetutorials.com/images/user-profile.png' alt='sunil')
+//   .received_msg
+//     .received_withd_msg
+//       p
+//         | 고객님 상품의 제작 잔행을 위해
+//         br
+//         | 작업 승인을 부탁드립니다.
+//         br
+//         button.btn.btn-success.trigger(type="button") 자세히 보기
+//       span.time_date  11:01 AM | June 9
+
+
+export default RequestMsg;

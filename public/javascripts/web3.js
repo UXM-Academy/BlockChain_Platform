@@ -44,7 +44,6 @@ async function init() {
   // If the array of accounts is non-empty, you're already
   // connected.
   ethereum.on("accountsChanged", handleAccountsChanged);
-
   if (provider) {
     startApp(provider); // Initialize your app
   } else {

@@ -2,7 +2,7 @@
 
 const e = React.createElement;
 
-class IncomingMsg extends React.Component {
+class RequestMsg extends React.Component {
   constructor(props) {
     super(props);
 
@@ -28,27 +28,33 @@ class IncomingMsg extends React.Component {
         </div>
         <div className="received_msg">
           <div className="received_withd_msg">
-            <p>Apollo University, Delhi, India Test</p>
-            <span className="time_date"> 11:01 AM | Today</span>
+            <p>
+              고객님 상품의 제작 잔행을 위해
+              <br />
+              작업 승인을 부탁드립니다.
+              <br />
+              <button type="button" className="btn btn-success trigger">
+                자세히 보기
+              </button>
+              <span className="time_date">11:01 AM | June 9</span>
+            </p>
           </div>
         </div>
       </div>
     );
   }
 }
+
 // .incoming_msg
 //   .incoming_msg_img
 //     img(src='https://ptetutorials.com/images/user-profile.png' alt='sunil')
 //   .received_msg
-//     #incomingMsg.received_withd_msg
-export default IncomingMsg;
-// Find all DOM containers, and render Like buttons into them.
-// domContainer = document.querySelector("#acceptApproval");
-// console.log("true");
-// ReactDOM.render(e(AcceptApproval), domContainer);
-// ReactDOM.render(<AcceptApproval></AcceptApproval>);
-// document.querySelectorAll("#incomingMsg").forEach((domContainer) => {
-//   // Read the comment ID from a data-* attribute.
-//   console.log(domContainer);
-//   ReactDOM.render(e(IncomingMsg), domContainer);
-// });
+//     .received_withd_msg
+//       p
+//         | 고객님 상품의 제작 잔행을 위해
+//         br
+//         | 작업 승인을 부탁드립니다.
+//         br
+//         button.btn.btn-success.trigger(type="button") 자세히 보기
+//       span.time_date  11:01 AM | June 9
+export default RequestMsg;
