@@ -29,7 +29,8 @@ block content
     .ml-2.col-sm-6
       img#preview.img-thumbnail(src='https://placehold.it/200x200' width='200px' height='200px')
     br
-    form.needs-validatio(novalidate='' action='', method='POST')
+    form.needs-validatio#registerServiceForm(novalidate='' action='', method='POST')
       include registerServiceFrom.pug
   //- script(src='../assets/dist/js/bootstrap.bundle.min.js')
   //- script(src='admin.js')
+  script(src="/javascripts/productRegister.js")

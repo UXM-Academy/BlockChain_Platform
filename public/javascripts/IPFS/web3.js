@@ -7,8 +7,9 @@ const provider = new ethers.providers.Web3Provider(window.ethereum);
 const signer = provider.getSigner();
 const reader = new window.FileReader();
 
-const registerForm = document.getElementById("registerServiceForm");
-const registerSend = document.getElementById("registerSendButton");
+const registerForm = document.querySelector("#registerServiceForm"),
+  registerSend = registerForm.querySelector("button");
+
 async function init() {
   /**********************************************************/
   /* Handle chain (network) and chainChanged (per EIP-1193) */
@@ -42,9 +43,7 @@ async function init() {
   }
 
   if (typeof ipfs !== "null") {
-    console.log(Ipfs);
     ipfs = await Ipfs.create({ repo: "ipfs-" + Math.random() });
-
     console.log(ipfs);
   } else {
     console.log("이미 있음");
@@ -52,29 +51,9 @@ async function init() {
 
   registerSend.addEventListener("click", handleSendClick);
 }
-async function handleSendClick() {
-  console.dir(registerForm);
-  let val = -1;
-  if (registerForm[1].checked) {
-    val = 0;
-  } else if (registerForm[2].checked) {
-    val = 1;
-  } else {
-    val = 2;
-  }
-  const root = await myContract.getCategoryRoot(val);
-  console.log(root);
-  const productCid = await ipfs.dag.put({
-    title: registerForm[4].value,
-    category: val,
-    prev: root,
-  });
-  console.log(productCid.toString());
-  const tx = await myContract.setCategoryRoot(val, productCid.toString());
-  // setCategoryRoot(val, productCid.toString());
-  const receipt = await tx.wait();
-  const value = await myContract.getCategoryRoot(val);
-  console.log(value);
+function handleSendClick() {
+  console.log(registerForm);
+  // let root = getCategoryRoot()
 }
 
 async function getCategoryRoot(_idx) {
@@ -83,22 +62,13 @@ async function getCategoryRoot(_idx) {
   return value;
 }
 
-async function setCategoryRoot(_idx, _cid) {
-  const tx = await myContract.setCategoryRoot(_idx, _cid);
-  onLoading();
-
-  offLoading();
-  console.log(tx);
-  console.log("complete");
-}
-
 function startApp(provider) {
   // If the provider returned by detectEthereumProvider is not the same as
   // window.ethereum, something is overwriting it, perhaps another wallet.
   if (provider.provider !== window.ethereum) {
     console.error("Do you have multiple wallets installed?");
   } else {
-    const contractAddress = "0x64cBAED4738bf0f218410A3f3B8c68907b19d0c7";
+    const contractAddress = "0x3F9ff42eBf692eE54d5c60E2372Ba6866F713636";
     // myContract = new web3js.eth.Contract(abi, contractAddress);
     myContract = new ethers.Contract(contractAddress, contractABI, signer);
     console.log(myContract);
