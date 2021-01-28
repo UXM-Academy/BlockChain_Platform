@@ -3,13 +3,13 @@ script(src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap
   input.file(type='file' name='img' id="img" accept='image/*')
   .row.g-3.mt-3
     .form-check.form-check-inline
-      input#inlineRadio1.form-check-input(type='radio' name='inlineRadioOptions' value='디자인')
+      input#inlineRadio1.form-check-input(type='radio' name='inlineRadioOptions' value=0)
       label.form-check-label(for='inlineRadio1') 디자인
     .form-check.form-check-inline
-      input#inlineRadio2.form-check-input(type='radio' name='inlineRadioOptions' value='프로그래밍')
+      input#inlineRadio2.form-check-input(type='radio' name='inlineRadioOptions' value=1)
       label.form-check-label(for='inlineRadio2') IT / 프로그래밍
     .form-check.form-check-inline
-      input#inlineRadio3.form-check-input(type='radio' name='inlineRadioOptions' value='사진/영상/음향')
+      input#inlineRadio3.form-check-input(type='radio' name='inlineRadioOptions' value=2)
       label.form-check-label(for='inlineRadio3') 사진 / 영상 / 음향
 
     .col-sm-6
@@ -45,7 +45,7 @@ script(src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap
     .col
       input.form-control(type='text' placeholder='10'  required='' disabled)
   hr.my-4
-  button.w-100.btn-outline-success.btn-lg(type='submit') 상품 등록 완료하기
+  button.w-100.btn-outline-success.btn-lg#registerSendButton(type="button") 상품 등록 완료하기
 
 script(src="javascripts/registerServiceForm.js")
 

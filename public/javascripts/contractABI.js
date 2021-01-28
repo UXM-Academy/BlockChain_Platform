@@ -217,6 +217,26 @@ contractABI = [
     constant: false,
     inputs: [
       {
+        internalType: "uint256",
+        name: "_idx",
+        type: "uint256",
+      },
+      {
+        internalType: "string",
+        name: "_cid",
+        type: "string",
+      },
+    ],
+    name: "setCategoryRoot",
+    outputs: [],
+    payable: false,
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    constant: false,
+    inputs: [
+      {
         internalType: "address payable",
         name: "_addressSeller",
         type: "address",
@@ -266,6 +286,27 @@ contractABI = [
     outputs: [],
     payable: false,
     stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    constant: true,
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "_idx",
+        type: "uint256",
+      },
+    ],
+    name: "getCategoryRoot",
+    outputs: [
+      {
+        internalType: "string",
+        name: "",
+        type: "string",
+      },
+    ],
+    payable: false,
+    stateMutability: "view",
     type: "function",
   },
 ];

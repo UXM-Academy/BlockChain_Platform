@@ -15,11 +15,11 @@ block content
             .contents
               .text
                 if title=='design'
-                  h1 디자인
+                  h1#categoryTitle 디자인
                 else if title=='develop'
-                  h1 IT/프로그래밍
+                  h1#categoryTitle IT/프로그래밍
                 else if title=='multimedia'
-                  h1 &#xBA40;&#xD2F0;&#xBBF8;&#xB514;&#xC5B4;
+                  h1#categoryTitle &#xBA40;&#xD2F0;&#xBBF8;&#xB514;&#xC5B4;
                 p &#xC9C0;&#xAE08; MJ mong&#xACFC; &#xD568;&#xAED8; &#xC2DC;&#xC791;&#xD574;&#xBCF4;&#xC138;&#xC694;
               //- .input-group.mb-4.border.rounded-pill.p-1
               .container
@@ -66,3 +66,4 @@ block content
           //-   .col-1
 
           include categoryElement.pug
+  script(src="/javascripts/product.js")

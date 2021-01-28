@@ -7,8 +7,7 @@ const provider = new ethers.providers.Web3Provider(window.ethereum);
 const signer = provider.getSigner();
 const reader = new window.FileReader();
 
-const registerForm = document.getElementById("registerServiceForm");
-const registerSend = document.getElementById("registerSendButton");
+const categoryTitle = document.getElementById("categoryTitle");
 async function init() {
   /**********************************************************/
   /* Handle chain (network) and chainChanged (per EIP-1193) */
@@ -42,54 +41,55 @@ async function init() {
   }
 
   if (typeof ipfs !== "null") {
-    console.log(Ipfs);
     ipfs = await Ipfs.create({ repo: "ipfs-" + Math.random() });
-
     console.log(ipfs);
   } else {
     console.log("이미 있음");
   }
-
-  registerSend.addEventListener("click", handleSendClick);
-}
-async function handleSendClick() {
-  console.dir(registerForm);
-  let val = -1;
-  if (registerForm[1].checked) {
+  let val;
+  if (categoryTitle.innerText == "디자인") {
     val = 0;
-  } else if (registerForm[2].checked) {
+  } else if (categoryTitle.innerText === "IT/프로그래밍") {
     val = 1;
   } else {
     val = 2;
   }
+
   const root = await myContract.getCategoryRoot(val);
   console.log(root);
-  const productCid = await ipfs.dag.put({
-    title: registerForm[4].value,
-    category: val,
-    prev: root,
-  });
-  console.log(productCid.toString());
-  const tx = await myContract.setCategoryRoot(val, productCid.toString());
-  // setCategoryRoot(val, productCid.toString());
-  const receipt = await tx.wait();
-  const value = await myContract.getCategoryRoot(val);
-  console.log(value);
+  let result = [];
+  let cid = root;
+  while (cid) {
+    const current = await ipfs.dag.get(cid);
+    const prev = current.value.prev;
+    result.push(current.value);
+    if (prev != "") {
+      cid = prev;
+    } else {
+      break;
+    }
+  }
+  console.log(result);
 }
+
+const traversePosts = async (cid) => {
+  const result = [];
+  while (cid) {
+    const current = await ipfs.dag.get(cid);
+    const prev = current.value.prev;
+    result.push(current.value);
+    if (prev != "") {
+      cid = prev;
+    } else {
+      return result;
+    }
+  }
+};
 
 async function getCategoryRoot(_idx) {
   const value = await myContract.getCategoryRoot(_idx);
   // const receipt = await value.wait();
   return value;
-}
-
-async function setCategoryRoot(_idx, _cid) {
-  const tx = await myContract.setCategoryRoot(_idx, _cid);
-  onLoading();
-
-  offLoading();
-  console.log(tx);
-  console.log("complete");
 }
 
 function startApp(provider) {
