@@ -1,4 +1,7 @@
+"use strict";
+
 require("buffer");
+const Ipfs = require("ipfs");
 
 let myContract;
 let userAccounts;
@@ -41,7 +44,7 @@ async function init() {
   }
 
   if (typeof ipfs !== "null") {
-    ipfs = await Ipfs.create({ repo: "ipfs-" + Math.random() });
+    ipfs = await Ipfs.create();
     console.log(ipfs);
   } else {
     console.log("이미 있음");
@@ -61,6 +64,7 @@ async function init() {
   let cid = root;
   while (cid) {
     const current = await ipfs.dag.get(cid);
+    console.log(current);
     const prev = current.value.prev;
     result.push(current.value);
     if (prev != "") {
@@ -98,7 +102,7 @@ function startApp(provider) {
   if (provider.provider !== window.ethereum) {
     console.error("Do you have multiple wallets installed?");
   } else {
-    const contractAddress = "0x64cBAED4738bf0f218410A3f3B8c68907b19d0c7";
+    const contractAddress = "0x9535c19B0Ba8Fe96B86D0072cB9B292B966e1399";
     // myContract = new web3js.eth.Contract(abi, contractAddress);
     myContract = new ethers.Contract(contractAddress, contractABI, signer);
     console.log(myContract);
