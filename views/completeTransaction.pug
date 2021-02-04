@@ -13,9 +13,10 @@ block content
           th(scope="col") 판매자
           th(scope="col") 거래완료시간
           th(scope="col") 리뷰작성
-      tbody
-        - for(var i=0; i<5; i++)
-          include completeElement.pug
+      //- #completeTransaction.tbody
+      #completeTransaction
+        //- - for(var i=0; i<5; i++)
+        //-   include completeElement.pug
   script.
     function handleClick() {
       console.log(true);

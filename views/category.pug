@@ -21,15 +21,12 @@ block content
                 else if title=='multimedia'
                   h1#categoryTitle &#xBA40;&#xD2F0;&#xBBF8;&#xB514;&#xC5B4;
                 p &#xC9C0;&#xAE08; MJ mong&#xACFC; &#xD568;&#xAED8; &#xC2DC;&#xC791;&#xD574;&#xBCF4;&#xC138;&#xC694;
-              //- .input-group.mb-4.border.rounded-pill.p-1
+
               .container
                 .row
                   .col
                   .col
                     .input-group.mb-4.border.p-1
-                      //
-                        <input type="search" placeholder="What're you searching for?" aria-describedby="button-addon3"
-                        class="form-control bg-none border-0">
                       input.form-control.border-0.bg-light(type='search' placeholder='무엇을 찾고 있나요?' aria-describedby='button-addon1')
                       .input-group-append.border-0
                         button#button-addon3.btn.btn-link.text-success(type='button')
@@ -58,12 +55,7 @@ block content
         .col
       //- .row
       //-   br
-      .row
-        link(rel="stylesheet", href="/stylesheets/categoryElement.css")
+      link(rel="stylesheet", href="/stylesheets/categoryElement.css")
+      #productCards.row
 
-        - for(var i=0; i<10; i++)
-          //- if i%3 == 0
-          //-   .col-1
-
-          include categoryElement.pug
   script(src="/javascripts/product.js")

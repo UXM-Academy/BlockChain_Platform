@@ -13,6 +13,7 @@ var schema = new Schema(
       trim: true,
     },
     password: { type: String },
+    userIdx: { type: String },
     name: { type: String },
     createdAt: { type: Date, default: Date.now },
     seller: { type: Boolean, default: false },

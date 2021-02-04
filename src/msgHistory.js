@@ -36,7 +36,7 @@ function RequestMsg({ time_data, img_src }) {
       <div className="received_msg">
         <div className="received_withd_msg">
           <p>
-            고객님 상품의 제작 잔행을 위해
+            고객님 상품의 제작 진행을 위해
             <br />
             작업 승인을 부탁드립니다.
             <br />

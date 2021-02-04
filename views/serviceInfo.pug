@@ -2,6 +2,9 @@ extends layout
 
 block content
   //- 판매자 입장에서의 상품정보
+  script(src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js")
+    script(src="../javascripts/star.js")
   .container.w-50
     .main-body
       //- Breadcrumb
@@ -20,7 +23,9 @@ block content
                 p.card-title.my-3.fs-3 price
                 if currentUser.seller
                   a.btn.btn-outline-success(href=`/serviceInfoEditor` style="position: relative; left: 55%;") 상품정보 수정
-                button#buyBtn.btn.btn-outline-success(style="position: relative; left: 60%;") 구매하기
+                  button#buyBtn.btn.btn-outline-success(style="position: relative; left: 60%;") 구매하기
+                else
+                  button#buyBtn.btn.btn-outline-success(style="position: relative; left: 85%;") 구매하기
         hr
         h3.mb-4 상품 소개
         //- p.mb-3.text-break= service.serviceIntro
@@ -29,8 +34,9 @@ block content
         hr
         h3.mb-4 리뷰
         .container
-          .row
-          - for(var i=0; i<5; i++)
-            include starView.pug
+          //- .row
+          #serviceInfoReview
+          //- - for(var i=0; i<5; i++)
+          //-   include starView.pug
   script(src="javascripts/tradeDeploy.js")
 

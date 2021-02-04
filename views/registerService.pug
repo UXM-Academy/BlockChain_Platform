@@ -20,8 +20,7 @@ block content
     font-size: 3.5rem;
     }
     }
-  //- // Custom styles for this template
-  //- link(href='form-validation.css' rel='stylesheet')
+  
   .py-5.text-center
     h2 상품 및 서비스 등록
     p.lead 아래 정보를 기입하여 새로운 상품이나 서비스를 등록하세요!
@@ -31,6 +30,5 @@ block content
     br
     form.needs-validatio#registerServiceForm(novalidate='' action='', method='POST')
       include registerServiceFrom.pug
-  //- script(src='../assets/dist/js/bootstrap.bundle.min.js')
-  //- script(src='admin.js')
+
   script(src="/javascripts/productRegister.js")

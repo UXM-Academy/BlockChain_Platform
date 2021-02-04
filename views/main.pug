@@ -1,12 +1,7 @@
 extends layout
 
 block content
-  //- head
-  //-   style.
-  //-     .icons {
-  //-     margin-left: 10%;
-  //-     border-radius: 10%;
-  //-     }
+  script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js' integrity='sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW' crossorigin='anonymous')
   body
     br
     br
@@ -23,9 +18,6 @@ block content
             br
           .container
             .input-group.mb-4.border.rounded-pill.p-1
-              //
-                <input type="search" placeholder="What're you searching for?" aria-describedby="button-addon3"
-                class="form-control bg-none border-0">
               input.form-control.border-0.bg-light(type='search' placeholder="What're you searching for?" aria-describedby='button-addon1')
               .input-group-append.border-0
                 button#button-addon3.btn.btn-link.text-success(type='button')

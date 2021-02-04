@@ -1,6 +1,10 @@
 extends layout
 
 block content
+  style.
+    #sellerInfoIdx {
+      display: none;
+    }
   //- 판매자 입장에서의 판매자 프로필
   .container.w-50
     .main-body
@@ -34,9 +38,10 @@ block content
           .col-sm.ms-0
             h3.mb-4 판매상품
           .col-sm.position-relative
-            a.btn.btn-outline-success.position-absolute.top-0.end-0(href=`/registerService`) 새로운 상품 등록
-        .row
-          - for(var i=0; i<3; i++)
-            include categoryElement.pug
-  
-      script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js' integrity='sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW' crossorigin='anonymous')   
+            a.btn.btn-outline-success.position-absolute.top-0.end-0(href=`/registerService/${seller._id}`) 새로운 상품 등록
+        #productCards.row
+          //- - for(var i=0; i<3; i++)
+          //-   include categoryElement.pug
+  input#sellerInfoIdx(type='text' value=`${seller.sellerIdx}` name="sellerInfoIdx")
+      //- script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js' integrity='sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW' crossorigin='anonymous')   
+  script(src="/javascripts/sellerInfo.js")

@@ -1,27 +1,19 @@
 extends layout
 
 block content  
-  //- head
-    
-    //- link(rel='stylesheet' href='/stylesheets/style.css')
-      meta(charset='utf-8')
   link(rel='canonical' href='https://getbootstrap.com/docs/5.0/examples/checkout/')
   link(rel='stylesheet' type='text/css' href='../stylesheets/register.css')
-
-  //- // Bootstrap core CSS
-  //- link(href='admin.css' rel='stylesheet')
-  
-  //- // Custom styles for this template
-  //- link(href='form-validation.css' rel='stylesheet')
-  //- body
+  style.
+    #sellerId {
+      display: none;
+    }
   .py-5.text-center
-    h2 전문가 등록
+    h2 판매자 가입
     p.lead 아래 정보를 기입하여 전문가가 되세요!
-  .col-md-10
+  .col-md-10 
     .ml-2.col-sm-6
       img#preview.img-thumbnail(src='https://placehold.it/200x200' width='200px' height='200px')
     br
     form.needs-validatio(novalidate='' action='/users/seller', method='POST')
+      input#sellerId(type='text' value=`${seller.id}` name="sellerId")
       include registerForm.pug
-  //- script(src='../assets/dist/js/bootstrap.bundle.min.js')
-  //- script(src='admin.js')
