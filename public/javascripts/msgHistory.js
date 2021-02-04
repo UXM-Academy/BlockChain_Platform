@@ -87,7 +87,7 @@ function RequestMsg(_ref3) {
         React.createElement(
           "p",
           null,
-          "\uACE0\uAC1D\uB2D8 \uC0C1\uD488\uC758 \uC81C\uC791 \uC794\uD589\uC744 \uC704\uD574",
+          "\uACE0\uAC1D\uB2D8 \uC0C1\uD488\uC758 \uC81C\uC791 \uC9C4\uD589\uC744 \uC704\uD574",
           React.createElement("br", null),
           "\uC791\uC5C5 \uC2B9\uC778\uC744 \uBD80\uD0C1\uB4DC\uB9BD\uB2C8\uB2E4.",
           React.createElement("br", null),

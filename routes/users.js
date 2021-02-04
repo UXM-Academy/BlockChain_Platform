@@ -15,10 +15,10 @@ function needAuth(req, res, next) {
 }
 
 function validateForm(form, options) {
-  var userID = form.userID || "";
-  userID = userID.trim();
+  var userEmail = form.userEmail || "";
+  userEmail = userEmail.trim();
 
-  if (!userID || userID.indexOf("@") == -1) {
+  if (!userEmail || userEmail.indexOf("@") == -1) {
     return "올바른 이메일 주소를 입력해주세요.";
   }
 
@@ -86,15 +86,16 @@ router.post(
       req.flash("danger", err);
       return res.redirect("back");
     }
-    var user = await User.findOne({ email: req.body.userID });
+    var user = await User.findOne({ email: req.body.userEmail });
     console.log("USER???", user);
     if (user) {
       req.flash("danger", "이메일이 이미 존재합니다.");
       return res.redirect("back");
     }
     user = new User({
-      email: req.body.userID,
+      email: req.body.userEmail,
       name: req.body.userName,
+      userIdx: req.body.userId,
     });
     user.password = await user.generateHash(req.body.userPassword);
 
@@ -110,6 +111,7 @@ router.post(
   catchErrors(async (req, res, next) => {
     var seller = new Seller({
       seller_id: req.user._id,
+      sellerIdx: req.body.sellerId,
       nickName: req.body.nickName,
       university: req.body.university,
       sellerIntro: req.body.sellerIntro,

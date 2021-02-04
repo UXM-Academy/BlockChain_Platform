@@ -2,16 +2,12 @@ extends ../layout
 
 block content
   head
-    title= title
-    //- link(rel='stylesheet' href='/stylesheets/style.css')
-    
-    
+    title= title    
     link(rel='stylesheet' href="/stylesheets/chat.css")
     link(rel='stylesheet' href="/stylesheets/requestPopup.css")
     link(rel='stylesheet' href="/stylesheets/acceptPopup.css")
 
   body
-    //- include ../clientHeader.pug
     include chat/chat.pug
     include approval/requestApproval.pug
     include approval/acceptApproval.pug

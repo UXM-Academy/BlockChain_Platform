@@ -6,7 +6,10 @@ block content
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
     title Document
     link(rel="stylesheet", href="/stylesheets/join.css")
-    
+    style.
+      #userId {
+        display: none;
+      }
   body
     .container
       .row
@@ -16,6 +19,7 @@ block content
           .jumbotron(style='padding-top: 20px;')
             //- 로그인 정보를 숨기면서 전송post
             form(method='post' action='/users')
+              input#userId(type="text" name="userId", value=`${user_id}`)
               h3(style='text-align: center;') &#xD68C;&#xC6D0;&#xAC00;&#xC785;
               .form-group
                 div
@@ -24,7 +28,7 @@ block content
               .form-group
                 div
                   label(for='number') &#xC774;&#xBA54;&#xC77C;
-                input.form-control(type='text' placeholder='example@mjmong.com' name='userID' id='userName')
+                input.form-control(type='text' placeholder='example@mjmong.com' name='userEmail' )
               .form-group
                 div
                   label(for='number') &#xBE44;&#xBC00;&#xBC88;&#xD638;

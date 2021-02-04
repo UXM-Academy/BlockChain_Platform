@@ -1,4 +1,7 @@
-script(src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous")
+style.
+  #userIdx {
+    display: none;
+  }
 .container
   input.file(type='file' name='img' id="img" accept='image/*')
   .row.g-3.mt-3
@@ -14,28 +17,21 @@ script(src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap
 
     .col-sm-6
       label.form-label(for='serviceName') 상품 및 서비스명
-      //- input#serviceName.form-control(type='text' placeholder='' value=service.serviceName required='' name="serviceName") 
       input#serviceName.form-control(type='text' placeholder=''  required='' name="serviceName")
     .col-sm-6
       label.form-label(for='price') 가격
-      //- input#price.form-control(type='text' placeholder='' value=service.price required='' name="price")
       input#price.form-control(type='text' placeholder=''  required='' name="price")
     .col-12
       label(for='serviceIntro')
         | 상품 소개 
-      //- textarea#serviceIntro.form-control(type='text'  required='' name="serviceIntro" rows='5')= service.serviceIntro
       textarea#serviceIntro.form-control(type='text'  required='' name="serviceIntro" rows='5')
+    input#userIdx(type='text' value=`${seller.sellerIdx}` name="userIdx")
+    input#userIdx(type='text' value=`${seller.sellerIdx}` name="userIdx")
   hr.my-4
   .row.g-3.mt-3
     .col-sm-6
       label.form-label(for='numOfSteps') 거래 진행 단계 수
-      //- input#serviceName.form-control(type='text' placeholder='' value=service.serviceName required='' name="serviceName") 
       input#numOfSteps.form-control(type='number' placeholder=''  required='' name="numOfSteps" value=3)
-      //- script.
-      //-   const numOfSteps = document.getElementById("numOfSteps");
-      //-   console.log(numOfSteps.value)
-    //- .col-sm-3
-      //- button.btn.btn-primary(type="button", data-bs-toggle="collapse", data-bs-target="#each_step", aria-expanded="false", aria-controls="each_step") 확인
   .row.g-3.mt-3 &nbsp환불 설정(%)
   #each_step.row.g-3.mt-3
     .col
@@ -47,7 +43,5 @@ script(src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap
   hr.my-4
   button.w-100.btn-outline-success.btn-lg#registerSendButton(type="button") 상품 등록 완료하기
 
-script(src="javascripts/registerServiceForm.js")
+script(src="/javascripts/registerServiceForm.js")
 
-  //- script(src='../assets/dist/js/bootstrap.bundle.min.js')
-  //- script(src='admin.js')

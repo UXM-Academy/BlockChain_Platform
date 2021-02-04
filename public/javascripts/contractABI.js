@@ -1,3 +1,6 @@
+let products = [];
+let sellerProducts = [];
+var event = new Event("showCategory");
 contractABI = [
   {
     constant: false,
@@ -237,6 +240,31 @@ contractABI = [
     constant: false,
     inputs: [
       {
+        internalType: "uint256",
+        name: "_categoryIdx",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
+        name: "_sellerIdx",
+        type: "uint256",
+      },
+      {
+        internalType: "string",
+        name: "_cid",
+        type: "string",
+      },
+    ],
+    name: "setSetting",
+    outputs: [],
+    payable: false,
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    constant: false,
+    inputs: [
+      {
         internalType: "address payable",
         name: "_addressSeller",
         type: "address",
@@ -273,6 +301,26 @@ contractABI = [
     inputs: [
       {
         internalType: "uint256",
+        name: "_userIdx",
+        type: "uint256",
+      },
+      {
+        internalType: "string",
+        name: "_cid",
+        type: "string",
+      },
+    ],
+    name: "setUser",
+    outputs: [],
+    payable: false,
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    constant: false,
+    inputs: [
+      {
+        internalType: "uint256",
         name: "_trId",
         type: "uint256",
       },
@@ -298,6 +346,48 @@ contractABI = [
       },
     ],
     name: "getCategoryRoot",
+    outputs: [
+      {
+        internalType: "string",
+        name: "",
+        type: "string",
+      },
+    ],
+    payable: false,
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    constant: true,
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "_sellerIdx",
+        type: "uint256",
+      },
+    ],
+    name: "getSeller",
+    outputs: [
+      {
+        internalType: "string",
+        name: "",
+        type: "string",
+      },
+    ],
+    payable: false,
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    constant: true,
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "_userIdx",
+        type: "uint256",
+      },
+    ],
+    name: "getUser",
     outputs: [
       {
         internalType: "string",
