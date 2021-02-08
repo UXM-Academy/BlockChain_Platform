@@ -1,11 +1,18 @@
 extends layout
 
 block content
+  style.
+    .nonvisible {
+        display: none;
+      }
   //- 판매자 입장에서의 상품정보
   script(src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js")
-    script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js")
-    script(src="../javascripts/star.js")
-  .container.w-50
+  script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js")
+  script(src="../javascripts/star.js")
+  input#userIdx.nonvisible(type='text' value=`${currentUser.userIdx}` name="userIdx")
+  input#cid.nonvisible(tyep="text" value=`${id}` name="cid")
+  input#sellerIdx.nonvisible(tyep="text" value="" name="sellerIdx")
+  #serviceInfo.container.w-50
     .main-body
       //- Breadcrumb
       .row.gutters-sm
@@ -15,12 +22,12 @@ block content
         .card.mb-3.border-0.bg-light
           .row.g-10
             .col-md-auto
-              img(src='https://images.unsplash.com/photo-1593627129575-7d0c0211c91a?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTh8fHJ1c3NpYW4lMjBibHVlfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60' alt='Admin' width='200' height='200')
+              img.serviceInfo(src='https://images.unsplash.com/photo-1593627129575-7d0c0211c91a?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTh8fHJ1c3NpYW4lMjBibHVlfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60' alt='Admin' width='200' height='200')
             .col-md-8
               .card-body
                 //- p.card-title.my-3.fs-2= service.serviceName 
-                p.card-title.my-3.fs-2 serviceName
-                p.card-title.my-3.fs-3 price
+                p.card-title.my-3.fs-2.serviceInfo product.title
+                p.card-title.my-3.fs-3.serviceInfo price
                 if currentUser.seller
                   a.btn.btn-outline-success(href=`/serviceInfoEditor` style="position: relative; left: 55%;") 상품정보 수정
                   button#buyBtn.btn.btn-outline-success(style="position: relative; left: 60%;") 구매하기
@@ -29,7 +36,7 @@ block content
         hr
         h3.mb-4 상품 소개
         //- p.mb-3.text-break= service.serviceIntro
-        p.mb-3.text-break serviceIntro
+        p.mb-3.text-break.serviceInfo serviceIntro
 
         hr
         h3.mb-4 리뷰
@@ -38,5 +45,6 @@ block content
           #serviceInfoReview
           //- - for(var i=0; i<5; i++)
           //-   include starView.pug
-  script(src="javascripts/tradeDeploy.js")
+  script(src="/javascripts/serviceInfo.js")
+  script(src="/javascripts/tradeDeploy.js")
 

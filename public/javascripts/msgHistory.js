@@ -93,7 +93,10 @@ function RequestMsg(_ref3) {
           React.createElement("br", null),
           React.createElement(
             "button",
-            { type: "button", className: "btn btn-success trigger" },
+            {
+              type: "button",
+              className: "acceptApproval btn btn-success trigger"
+            },
             "\uC790\uC138\uD788 \uBCF4\uAE30"
           ),
           React.createElement(
@@ -195,15 +198,80 @@ var MsgHistory = function (_React$Component) {
 
   return MsgHistory;
 }(React.Component);
+
+function popup() {
+  var modal = document.querySelectorAll(".modal");
+  var trigger = document.querySelectorAll(".trigger");
+  var closeButton = document.querySelectorAll(".close-button");
+  var cancelButton = document.querySelectorAll(".cancel");
+  var okButton = document.querySelectorAll(".ok");
+  console.log(trigger);
+
+  console.log(modal);
+
+  function toggleModal(event) {
+    // modal.classList.toggle("show-modal");
+    console.log(event.target); //etc_send_btn
+    if (event.target.classList.contains("acceptApproval")) {
+      modal[1].classList.replace("modal", "show-modal");
+      console.log("a");
+    } else {
+      modal[0].classList.replace("modal", "show-modal");
+      console.log("b");
+    }
+  }
+
+  function cancelToggle(event) {
+    console.log(event.target);
+    // modal.classList.toggle("show-modal"); //input.ok etc_close_btn
+    if (event.target.classList.contains("acceptApproval")) {
+      modal[1].classList.replace("show-modal", "modal");
+    } else {
+      modal[0].classList.replace("show-modal", "modal");
+    }
+    console.log(trigger);
+    console.log(modal);
+  }
+
+  function windowOnClick(event) {
+    if (event.target === modal) {
+      toggleModal();
+    }
+  }
+
+  if (trigger.length !== 0) {
+    trigger[0].addEventListener("click", toggleModal);
+    trigger[1].addEventListener("click", toggleModal);
+  }
+  // if (closeButton.length !== 0) {
+  //   closeButton[0].addEventListener("click", cancelToggle);
+  //   closeButton[1].addEventListener("click", cancelToggle);
+  // }
+
+  for (var i = 0; i < cancelButton.length; i++) {
+    closeButton[i].addEventListener("click", cancelToggle);
+    cancelButton[i].addEventListener("click", cancelToggle);
+    okButton[i].addEventListener("click", cancelToggle);
+  }
+  // cancel.addEventListener("click", cancelToggle);
+  window.addEventListener("click", windowOnClick);
+}
 // Find all DOM containers, and render Like buttons into them.
 // domContainer = document.querySelector("#acceptApproval");
 // console.log("true");
 // ReactDOM.render(e(AcceptApproval), domContainer);
 // ReactDOM.render(<AcceptApproval></AcceptApproval>);
+// document.querySelectorAll(".msg_history").forEach((domContainer) => {
+//   // Read the comment ID from a data-* attribute.
+//   console.log(domContainer);
+//   ReactDOM.render(e(MsgHistory), domContainer);
+// });
 
-
-document.querySelectorAll(".msg_history").forEach(function (domContainer) {
-  // Read the comment ID from a data-* attribute.
-  console.log(domContainer);
-  ReactDOM.render(e(MsgHistory), domContainer);
-});
+var domContainer = document.querySelector(".msg_history");
+domContainer.addEventListener("showCategory", function (e) {
+  console.log(e.target.id);
+  ReactDOM.render(React.createElement(MsgHistory, null), e.target);
+  popup();
+  // ReactDOM.render(<MsgHistory target={e.target.id}/>, e.target);
+  console.log("msgHistory changed");
+}, false);

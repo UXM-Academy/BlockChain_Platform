@@ -6,10 +6,17 @@ block content
     link(rel='stylesheet' href="/stylesheets/chat.css")
     link(rel='stylesheet' href="/stylesheets/requestPopup.css")
     link(rel='stylesheet' href="/stylesheets/acceptPopup.css")
-
+    style.
+      .nonvisible{
+        display: none;
+      }
   body
+    input#userIdx.nonvisible(type='text' value=`${currentUser.userIdx}` name="userIdx")
+    input#sellerIdx.nonvisible(type='text' value=`${seller.sellerIdx}` name="sellerIdx")
+    
     include chat/chat.pug
     include approval/requestApproval.pug
     include approval/acceptApproval.pug
-    
-    script(src="javascripts/bundle.js")
+
+
+  script(src="/javascripts/progressTrade.js")

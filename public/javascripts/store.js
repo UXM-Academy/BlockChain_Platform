@@ -1,5 +1,9 @@
 let money = document.querySelector(".money");
 money.addEventListener("input", displayMoney);
+
+const storeBtn = document.getElementById("storeBtn");
+let accounts = [];
+
 function displayMoney(event) {
   let balance = document.querySelector(".balance");
   balance = balance.innerText.substring(0, balance.innerText.length - 3);
@@ -29,3 +33,31 @@ function displayMoney(event) {
     }
   }
 }
+//Sending Ethereum to an address
+storeBtn.addEventListener("click", (event) => {
+  event.preventDefault();
+  let value = parseInt(money.value);
+  let weiValue = value * 10000000000000000;
+  console.log(value.toString(16));
+  console.log(value);
+  console.log(weiValue);
+  ethereum
+    .request({
+      method: "eth_sendTransaction",
+      params: [
+        {
+          from: accounts[0],
+          to: "0x0c5daef032831f9b74c88644ea9107258265b55d",
+          value: "0x" + weiValue.toString(16),
+        },
+      ],
+    })
+    .then((txHash) => console.log(txHash))
+    .catch((error) => console.error);
+});
+
+async function init() {
+  accounts = await ethereum.request({ method: "eth_requestAccounts" });
+  console.log(accounts);
+}
+init();

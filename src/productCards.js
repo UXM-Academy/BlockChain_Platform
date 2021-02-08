@@ -13,9 +13,11 @@ function ProductCard({ product }) {
   const imagetobase64 = product.image.toString("base64");
   console.log(imagetobase64);
   const base64Src = "data:image/jpeg;base64," + imagetobase64;
+  const href = `/serviceInfo/${product.cid}`;
+  // const href = `/serviceInfo`;
   return (
     <div className="col-sm-6 col-md-4 p-1">
-      <a href="/serviceInfo">
+      <a href={href}>
         <div className="card" style={{ width: "14rem" }}>
           <img className="card-img-top" src={base64Src} alt="..."></img>
           <div className="card-body">

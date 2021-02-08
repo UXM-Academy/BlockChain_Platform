@@ -40,7 +40,10 @@ function RequestMsg({ time_data, img_src }) {
             <br />
             작업 승인을 부탁드립니다.
             <br />
-            <button type="button" className="btn btn-success trigger">
+            <button
+              type="button"
+              className="acceptApproval btn btn-success trigger"
+            >
               자세히 보기
             </button>
             <span className="time_date">{time_data}</span>
@@ -141,13 +144,84 @@ class MsgHistory extends React.Component {
     );
   }
 }
+
+function popup() {
+  let modal = document.querySelectorAll(".modal");
+  let trigger = document.querySelectorAll(".trigger");
+  let closeButton = document.querySelectorAll(".close-button");
+  let cancelButton = document.querySelectorAll(".cancel");
+  let okButton = document.querySelectorAll(".ok");
+  console.log(trigger);
+
+  console.log(modal);
+
+  function toggleModal(event) {
+    // modal.classList.toggle("show-modal");
+    console.log(event.target); //etc_send_btn
+    if (event.target.classList.contains("acceptApproval")) {
+      modal[1].classList.replace("modal", "show-modal");
+      console.log("a");
+    } else {
+      modal[0].classList.replace("modal", "show-modal");
+      console.log("b");
+    }
+  }
+
+  function cancelToggle(event) {
+    console.log(event.target);
+    // modal.classList.toggle("show-modal"); //input.ok etc_close_btn
+    if (event.target.classList.contains("acceptApproval")) {
+      modal[1].classList.replace("show-modal", "modal");
+    } else {
+      modal[0].classList.replace("show-modal", "modal");
+    }
+    console.log(trigger);
+    console.log(modal);
+  }
+
+  function windowOnClick(event) {
+    if (event.target === modal) {
+      toggleModal();
+    }
+  }
+
+  if (trigger.length !== 0) {
+    trigger[0].addEventListener("click", toggleModal);
+    trigger[1].addEventListener("click", toggleModal);
+  }
+  // if (closeButton.length !== 0) {
+  //   closeButton[0].addEventListener("click", cancelToggle);
+  //   closeButton[1].addEventListener("click", cancelToggle);
+  // }
+
+  for (let i = 0; i < cancelButton.length; i++) {
+    closeButton[i].addEventListener("click", cancelToggle);
+    cancelButton[i].addEventListener("click", cancelToggle);
+    okButton[i].addEventListener("click", cancelToggle);
+  }
+  // cancel.addEventListener("click", cancelToggle);
+  window.addEventListener("click", windowOnClick);
+}
 // Find all DOM containers, and render Like buttons into them.
 // domContainer = document.querySelector("#acceptApproval");
 // console.log("true");
 // ReactDOM.render(e(AcceptApproval), domContainer);
 // ReactDOM.render(<AcceptApproval></AcceptApproval>);
-document.querySelectorAll(".msg_history").forEach((domContainer) => {
-  // Read the comment ID from a data-* attribute.
-  console.log(domContainer);
-  ReactDOM.render(e(MsgHistory), domContainer);
-});
+// document.querySelectorAll(".msg_history").forEach((domContainer) => {
+//   // Read the comment ID from a data-* attribute.
+//   console.log(domContainer);
+//   ReactDOM.render(e(MsgHistory), domContainer);
+// });
+
+const domContainer = document.querySelector(".msg_history");
+domContainer.addEventListener(
+  "showCategory",
+  (e) => {
+    console.log(e.target.id);
+    ReactDOM.render(<MsgHistory />, e.target);
+    popup();
+    // ReactDOM.render(<MsgHistory target={e.target.id}/>, e.target);
+    console.log("msgHistory changed");
+  },
+  false
+);

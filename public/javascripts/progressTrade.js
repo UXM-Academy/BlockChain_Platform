@@ -2293,27 +2293,27 @@ exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate :
 
 require("buffer");
 const Ipfs = require("ipfs");
-
 let userAccounts;
 
 console.log(products);
 const provider = new ethers.providers.Web3Provider(window.ethereum);
 const signer = provider.getSigner();
 const reader = new window.FileReader();
-const domContainer = document.getElementById("productCards");
-const categoryTitle = document.getElementById("categoryTitle");
+const userIdx = document.getElementById("userIdx");
+const sellerIdx = document.getElementById("sellerIdx");
+const domContainer = document.querySelector(".inbox_chat");
+
 async function init() {
   const chainId = await ethereum.request({ method: "eth_chainId" });
-
+  
   userAccounts = await ethereum.request({ method: "eth_requestAccounts" });
   ethereum
-
     .request({ method: "eth_requestAccounts" })
     .then(handleAccountsChanged)
     .catch((err) => {
       console.error(err);
     });
-  console.log(chainId);
+  console.log();
 
   ethereum.on("accountsChanged", handleAccountsChanged);
   if (provider) {
@@ -2328,40 +2328,50 @@ async function init() {
   } else {
     console.log("이미 있음");
   }
-  let val;
-  if (categoryTitle.innerText == "디자인") {
-    val = 0;
-  } else if (categoryTitle.innerText === "IT/프로그래밍") {
-    val = 1;
+  console.log(parseInt(userIdx.value));
+  if (sellerIdx.value == "null") {
+    trades = await myContract.getTrade(parseInt(userIdx.value));
   } else {
-    val = 2;
+    trades = await myContract.getSellerTrade(parseInt(sellerIdx.value));
   }
-
-  const root = await myContract.getCategoryRoot(val);
-  console.log(root);
-  let cid = root;
-  while (cid) {
-    let current = await ipfs.dag.get(cid);
-    console.log(current);
-    const prev = current.value.productPrev;
-    current.value.cid = cid;
-    console.log(current.value.cid);
-    products.push(current.value);
-    if (prev != "") {
-      cid = prev;
-    } else {
-      break;
-    }
+  console.log(trades);
+  console.dir(document);
+  const waitDom = await domContainer.dispatchEvent(event);
+  console.log(waitDom)
+  const chatList = domContainer.querySelectorAll(".chat_list");
+  console.log(chatList)
+  for (var i = 0; i < chatList.length; i++) {
+    chatList[i].addEventListener("click", async (e) => {
+      console.log("clicked in progressTrade")
+      const msgContainer = document.querySelector(".msg_history");
+      const root = await myContract.getChat(e.target.id);
+      console.log(root);
+      let cid = root;
+      while (cid) {
+        let current = await ipfs.dag.get(cid);
+        console.log(current);
+        const prev = current.value.productPrev;
+        current.value.cid = cid;
+        console.log(current.value.cid);
+        chats.push(current.value);
+        if (prev != "") {
+          cid = prev;
+        } else {
+          break;
+        }
+      }
+      console.log("IPFS:", chats);
+      msgContainer.dispatchEvent(event);
+      console.log("inboxChat clicked");
+    })
   }
-  console.log("IPFS:", products);
-  domContainer.dispatchEvent(event);
 }
 
 function startApp(provider) {
   if (provider.provider !== window.ethereum) {
     console.error("Do you have multiple wallets installed?");
   } else {
-    // const contractAddress = "0x75E7bB7A6fd2f8afAF38e2fB629191af81E31a9A";
+    // const contractAddress = "0xD4EE6eE1E06E8dCc7A7008d1DfE312f8AEBBbA16";
     // myContract = new web3js.eth.Contract(abi, contractAddress);
     myContract = new ethers.Contract(contractAddress, contractABI, signer);
     console.log(myContract);

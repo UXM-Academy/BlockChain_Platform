@@ -15,11 +15,25 @@ router.get("/progressLayout", function (req, res, next) {
   res.render("progress/progressLayout", { title: "progressLayout" });
 });
 
+router.get(
+  "/progressLayout/:id",
+  catchErrors(async (req, res, next) => {
+    var seller = await Seller.findOne({ seller_id: req.params.id });
+    if (!seller) {
+      seller = { sellerIdx: null };
+    }
+    res.render("progress/progressLayout", {
+      title: "progressLayout",
+      seller: seller,
+    });
+  })
+);
+
 router.get("/register", async function (req, res, next) {
   const id = await Seller.countDocuments();
   res.render("register", { title: "register", seller: { id: id } });
 });
-
+("");
 router.get("/jpgdownload/:ID", function (req, res) {
   async function run() {
     try {
@@ -72,8 +86,9 @@ router.get(
     res.render("registerService", { seller: seller });
   })
 );
-router.get("/serviceInfo", function (req, res, next) {
-  res.render("serviceInfo");
+router.get("/serviceInfo/:id", function (req, res, next) {
+  res.render("serviceInfo", { id: req.params.id });
+  // { product: req.query.product }
 });
 
 router.get("/serviceInfoEditor", function (req, res, next) {

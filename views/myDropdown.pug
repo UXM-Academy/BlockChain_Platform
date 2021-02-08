@@ -3,7 +3,7 @@ link(rel='stylesheet' type='text/css' href='../stylesheets/myDropdown.css')
   button.btn.btn-success.dropdown-toggle(type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: #83dcb7; border: none;")
     span=currentUser.name
   .dropdown-menu.dropdown-menu-end
-    a.dropdown-item(href="/progressLayout") 구매진행
+    a.dropdown-item(href=`/progressLayout/${currentUser.id}`) 구매진행
     if currentUser.seller
       a.a.dropdown-item(href=`/users/sellerInfo/${currentUser.id}`) 프로필 보기
     else
