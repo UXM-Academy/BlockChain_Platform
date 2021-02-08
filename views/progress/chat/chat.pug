@@ -7,6 +7,7 @@
           .recent_heading
             h4 &#xAD6C;&#xB9E4;&#xC9C4;&#xD589; &#xC0C1;&#xD488;
         .inbox_chat
+        input#tradeIdx.nonvisible(type='text' value=0 name="tradeIdx")
           //- include chatListActive.pug
           //- - for(var i=0; i<5; i++)
           //-   include chatList.pug
@@ -23,7 +24,7 @@
               i.fa.fa-paper-plane-o(aria-hidden='true')
             button.etc_send_btn.trigger(type='button')
               i.fa.fa-plus(aria-hidden='true' style="pointer-events:none")
-            
+  
 //- button#dropdownMenuButton.btn.btn-secondary.dropdown-toggle(type='button' data-bs-toggle='dropdown' aria-expanded='false')
 //-     | Dropdown button
 //-   ul.dropdown-menu(aria-labelledby='dropdownMenuButton')

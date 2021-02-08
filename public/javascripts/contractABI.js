@@ -1,6 +1,11 @@
 let products = [];
 let sellerProducts = [];
 var event = new Event("showCategory");
+let trades = [];
+let chats = [];
+let myContract;
+let ipfs;
+const contractAddress = "0x05e34114A7998247D00E2717288cD925F4084152";
 contractABI = [
   {
     constant: false,
@@ -10,19 +15,9 @@ contractABI = [
         name: "_trId",
         type: "uint256",
       },
-    ],
-    name: "getTrade",
-    outputs: [],
-    payable: false,
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    constant: false,
-    inputs: [
       {
         internalType: "uint256",
-        name: "_trId",
+        name: "_userID",
         type: "uint256",
       },
     ],
@@ -101,6 +96,12 @@ contractABI = [
         name: "isFinished",
         type: "bool",
       },
+      {
+        indexed: false,
+        internalType: "string",
+        name: "productCid",
+        type: "string",
+      },
     ],
     name: "InfoTrade",
     type: "event",
@@ -137,6 +138,11 @@ contractABI = [
       {
         internalType: "uint256",
         name: "_trId",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
+        name: "_userID",
         type: "uint256",
       },
     ],
@@ -176,12 +182,17 @@ contractABI = [
     inputs: [
       {
         internalType: "uint256",
-        name: "_trId",
+        name: "_tradeId",
         type: "uint256",
       },
       {
         internalType: "uint256",
         name: "_cancelStep",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
+        name: "_userID",
         type: "uint256",
       },
     ],
@@ -221,7 +232,7 @@ contractABI = [
     inputs: [
       {
         internalType: "uint256",
-        name: "_idx",
+        name: "_tradeId",
         type: "uint256",
       },
       {
@@ -230,7 +241,7 @@ contractABI = [
         type: "string",
       },
     ],
-    name: "setCategoryRoot",
+    name: "setChat",
     outputs: [],
     payable: false,
     stateMutability: "nonpayable",
@@ -271,6 +282,11 @@ contractABI = [
       },
       {
         internalType: "uint256",
+        name: "_userID",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
         name: "price",
         type: "uint256",
       },
@@ -289,31 +305,21 @@ contractABI = [
         name: "_divded",
         type: "uint256",
       },
+      {
+        internalType: "string",
+        name: "_productCid",
+        type: "string",
+      },
+      {
+        internalType: "uint256",
+        name: "_sellerID",
+        type: "uint256",
+      },
     ],
     name: "setTrade",
     outputs: [],
     payable: true,
     stateMutability: "payable",
-    type: "function",
-  },
-  {
-    constant: false,
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "_userIdx",
-        type: "uint256",
-      },
-      {
-        internalType: "string",
-        name: "_cid",
-        type: "string",
-      },
-    ],
-    name: "setUser",
-    outputs: [],
-    payable: false,
-    stateMutability: "nonpayable",
     type: "function",
   },
   {
@@ -328,6 +334,11 @@ contractABI = [
         internalType: "string",
         name: "_useReport",
         type: "string",
+      },
+      {
+        internalType: "uint256",
+        name: "_userID",
+        type: "uint256",
       },
     ],
     name: "setUseReport",
@@ -346,6 +357,27 @@ contractABI = [
       },
     ],
     name: "getCategoryRoot",
+    outputs: [
+      {
+        internalType: "string",
+        name: "",
+        type: "string",
+      },
+    ],
+    payable: false,
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    constant: true,
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "_tradeId",
+        type: "uint256",
+      },
+    ],
+    name: "getChat",
     outputs: [
       {
         internalType: "string",
@@ -383,16 +415,171 @@ contractABI = [
     inputs: [
       {
         internalType: "uint256",
-        name: "_userIdx",
+        name: "_sellerID",
         type: "uint256",
       },
     ],
-    name: "getUser",
+    name: "getSellerTrade",
     outputs: [
       {
-        internalType: "string",
+        components: [
+          {
+            internalType: "address payable",
+            name: "addressSeller",
+            type: "address",
+          },
+          {
+            internalType: "uint256",
+            name: "price",
+            type: "uint256",
+          },
+          {
+            internalType: "string",
+            name: "talentId",
+            type: "string",
+          },
+          {
+            internalType: "address payable",
+            name: "addressBuyer",
+            type: "address",
+          },
+          {
+            internalType: "uint256",
+            name: "divided",
+            type: "uint256",
+          },
+          {
+            internalType: "uint256",
+            name: "countAgree",
+            type: "uint256",
+          },
+          {
+            internalType: "uint256",
+            name: "balanceOf",
+            type: "uint256",
+          },
+          {
+            internalType: "uint256",
+            name: "tradeId",
+            type: "uint256",
+          },
+          {
+            internalType: "uint256",
+            name: "cancelStep",
+            type: "uint256",
+          },
+          {
+            internalType: "bool",
+            name: "isFinished",
+            type: "bool",
+          },
+          {
+            internalType: "string",
+            name: "useReport",
+            type: "string",
+          },
+          {
+            internalType: "string[5]",
+            name: "msgData",
+            type: "string[5]",
+          },
+          {
+            internalType: "string",
+            name: "productCid",
+            type: "string",
+          },
+        ],
+        internalType: "struct TalentData.Trade[]",
         name: "",
-        type: "string",
+        type: "tuple[]",
+      },
+    ],
+    payable: false,
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    constant: true,
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "_userID",
+        type: "uint256",
+      },
+    ],
+    name: "getTrade",
+    outputs: [
+      {
+        components: [
+          {
+            internalType: "address payable",
+            name: "addressSeller",
+            type: "address",
+          },
+          {
+            internalType: "uint256",
+            name: "price",
+            type: "uint256",
+          },
+          {
+            internalType: "string",
+            name: "talentId",
+            type: "string",
+          },
+          {
+            internalType: "address payable",
+            name: "addressBuyer",
+            type: "address",
+          },
+          {
+            internalType: "uint256",
+            name: "divided",
+            type: "uint256",
+          },
+          {
+            internalType: "uint256",
+            name: "countAgree",
+            type: "uint256",
+          },
+          {
+            internalType: "uint256",
+            name: "balanceOf",
+            type: "uint256",
+          },
+          {
+            internalType: "uint256",
+            name: "tradeId",
+            type: "uint256",
+          },
+          {
+            internalType: "uint256",
+            name: "cancelStep",
+            type: "uint256",
+          },
+          {
+            internalType: "bool",
+            name: "isFinished",
+            type: "bool",
+          },
+          {
+            internalType: "string",
+            name: "useReport",
+            type: "string",
+          },
+          {
+            internalType: "string[5]",
+            name: "msgData",
+            type: "string[5]",
+          },
+          {
+            internalType: "string",
+            name: "productCid",
+            type: "string",
+          },
+        ],
+        internalType: "struct TalentData.Trade[]",
+        name: "",
+        type: "tuple[]",
       },
     ],
     payable: false,

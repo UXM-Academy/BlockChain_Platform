@@ -24,12 +24,14 @@ function ProductCard(_ref) {
   var imagetobase64 = product.image.toString("base64");
   console.log(imagetobase64);
   var base64Src = "data:image/jpeg;base64," + imagetobase64;
+  var href = "/serviceInfo/" + product.cid;
+  // const href = `/serviceInfo`;
   return React.createElement(
     "div",
     { className: "col-sm-6 col-md-4 p-1" },
     React.createElement(
       "a",
-      { href: "/serviceInfo" },
+      { href: href },
       React.createElement(
         "div",
         { className: "card", style: { width: "14rem" } },

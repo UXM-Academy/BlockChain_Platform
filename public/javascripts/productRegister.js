@@ -2292,9 +2292,7 @@ exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate :
 (function (Buffer){(function (){
 require("buffer");
 const Ipfs = require("ipfs");
-let myContract;
 let userAccounts;
-let ipfs;
 const provider = new ethers.providers.Web3Provider(window.ethereum);
 const signer = provider.getSigner();
 const reader = new window.FileReader();
@@ -2380,7 +2378,7 @@ function startApp(provider) {
   if (provider.provider !== window.ethereum) {
     console.error("Do you have multiple wallets installed?");
   } else {
-    const contractAddress = "0x5D7338f72458090d1F8914f7395AFF970BC13146";
+    // const contractAddress = "0xD4EE6eE1E06E8dCc7A7008d1DfE312f8AEBBbA16";
     // myContract = new web3js.eth.Contract(abi, contractAddress);
     myContract = new ethers.Contract(contractAddress, contractABI, signer);
     console.log(myContract);

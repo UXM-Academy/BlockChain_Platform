@@ -3,9 +3,7 @@
 require("buffer");
 const Ipfs = require("ipfs");
 
-let myContract;
 let userAccounts;
-let ipfs;
 
 console.log(products);
 const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -24,7 +22,7 @@ async function init() {
     .catch((err) => {
       console.error(err);
     });
-  console.log();
+  console.log(chainId);
 
   ethereum.on("accountsChanged", handleAccountsChanged);
   if (provider) {
@@ -52,9 +50,11 @@ async function init() {
   console.log(root);
   let cid = root;
   while (cid) {
-    const current = await ipfs.dag.get(cid);
+    let current = await ipfs.dag.get(cid);
     console.log(current);
     const prev = current.value.productPrev;
+    current.value.cid = cid;
+    console.log(current.value.cid);
     products.push(current.value);
     if (prev != "") {
       cid = prev;
@@ -70,7 +70,7 @@ function startApp(provider) {
   if (provider.provider !== window.ethereum) {
     console.error("Do you have multiple wallets installed?");
   } else {
-    const contractAddress = "0x5D7338f72458090d1F8914f7395AFF970BC13146";
+    // const contractAddress = "0x75E7bB7A6fd2f8afAF38e2fB629191af81E31a9A";
     // myContract = new web3js.eth.Contract(abi, contractAddress);
     myContract = new ethers.Contract(contractAddress, contractABI, signer);
     console.log(myContract);

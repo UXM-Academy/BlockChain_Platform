@@ -1,9 +1,9 @@
 .modal
   .modal-content
-    span.close-button.accept_close_btn &times;
+    span.acceptApproval.close-button.accept_close_btn &times;
     h1.title 받은 메세지
     #acceptApproval
-      button.file-download(type='button' onclick="location.href='/jpgdownload/QmRtpnAL2JLfwTcpqXm1p1hrp6YobykLbfa37juqw6jMr2'")
+      button.file-download(type='button')
         i.fa.fa-download(aria-hidden='true')
       .wrapper
         div
@@ -17,5 +17,5 @@
         div(style='padding-top: 16px;') asdfasdfas
 
       //- #ok -> .ok
-      input.ok(type='button' value='수락')
-      input.cancel(type='button' value='거절')
+      input.acceptApproval.ok(type='button' value='수락')
+      input.acceptApproval.cancel(type='button' value='거절')

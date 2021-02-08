@@ -2,19 +2,21 @@
 
 require("buffer");
 const Ipfs = require("ipfs");
-
 let userAccounts;
 
+console.log(products);
 const provider = new ethers.providers.Web3Provider(window.ethereum);
 const signer = provider.getSigner();
 const reader = new window.FileReader();
-const domContainer = document.getElementById("productCards");
+const userIdx = document.getElementById("userIdx");
+const sellerIdx = document.getElementById("sellerIdx");
+const domContainer = document.querySelector(".inbox_chat");
+
 async function init() {
   const chainId = await ethereum.request({ method: "eth_chainId" });
-
+  
   userAccounts = await ethereum.request({ method: "eth_requestAccounts" });
   ethereum
-
     .request({ method: "eth_requestAccounts" })
     .then(handleAccountsChanged)
     .catch((err) => {
@@ -35,26 +37,43 @@ async function init() {
   } else {
     console.log("이미 있음");
   }
-
-  const sellerInfoIdx = document.getElementById("sellerInfoIdx");
-  const sellerIdx = parseInt(sellerInfoIdx.value);
-
-  const sellerRoot = await myContract.getSeller(sellerIdx);
-  console.log(sellerRoot);
-  let cid = sellerRoot;
-  while (cid) {
-    const current = await ipfs.dag.get(cid);
-    console.log(current);
-    const prev = current.value.sellerPrev;
-    products.push(current.value);
-    if (prev != "") {
-      cid = prev;
-    } else {
-      break;
-    }
+  console.log(parseInt(userIdx.value));
+  if (sellerIdx.value == "null") {
+    trades = await myContract.getTrade(parseInt(userIdx.value));
+  } else {
+    trades = await myContract.getSellerTrade(parseInt(sellerIdx.value));
   }
-  console.log(products);
-  domContainer.dispatchEvent(event);
+  console.log(trades);
+  console.dir(document);
+  const waitDom = await domContainer.dispatchEvent(event);
+  console.log(waitDom)
+  const chatList = domContainer.querySelectorAll(".chat_list");
+  console.log(chatList)
+  for (var i = 0; i < chatList.length; i++) {
+    chatList[i].addEventListener("click", async (e) => {
+      console.log("clicked in progressTrade")
+      const msgContainer = document.querySelector(".msg_history");
+      const root = await myContract.getChat(e.target.id);
+      console.log(root);
+      let cid = root;
+      while (cid) {
+        let current = await ipfs.dag.get(cid);
+        console.log(current);
+        const prev = current.value.productPrev;
+        current.value.cid = cid;
+        console.log(current.value.cid);
+        chats.push(current.value);
+        if (prev != "") {
+          cid = prev;
+        } else {
+          break;
+        }
+      }
+      console.log("IPFS:", chats);
+      msgContainer.dispatchEvent(event);
+      console.log("inboxChat clicked");
+    })
+  }
 }
 
 function startApp(provider) {
