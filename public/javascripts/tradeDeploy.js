@@ -12,11 +12,12 @@ async function setTrade(_price, _userAccounts) {
   console.log("progress1");
   console.log(_userAccounts[0]);
   console.log(parseInt(userIdx.value));
-  console.log(productPrice);
+  console.log(parseInt(sellerIdx.value));
+  console.log(productCid);
   const tx = await myContract.setTrade(
     "0x8E3e6B6EB1e392901Cfc3eD7C0adAc6522CE7507",
     parseInt(userIdx.value),
-    _price,
+    1,
     "talentId",
     _userAccounts[0],
     3,
@@ -57,7 +58,7 @@ async function init() {
 
   buyBtn.addEventListener("click", function () {
     console.log("loading");
-    setTrade(productPrice, userAccounts);
+    setTrade(1, userAccounts);
   });
 }
 

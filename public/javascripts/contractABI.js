@@ -5,7 +5,7 @@ let trades = [];
 let chats = [];
 let myContract;
 let ipfs;
-const contractAddress = "0x05e34114A7998247D00E2717288cD925F4084152";
+const contractAddress = "0xeF31cb50f16B9873F8B86bcd17807f1E1414E16b";
 contractABI = [
   {
     constant: false,

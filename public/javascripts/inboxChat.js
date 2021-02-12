@@ -27,7 +27,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 function ChatListComponent(_ref) {
-  var trade = _ref.trade;
+  var tradeIdx = _ref.tradeIdx,
+      trade = _ref.trade;
 
   console.log(trade);
   console.log(parseInt(trade.tradeId._hex));
@@ -36,6 +37,7 @@ function ChatListComponent(_ref) {
     {
       className: "chat_list",
       id: parseInt(trade.tradeId._hex)
+
       // onClick={(e) => {
       // const tradeIdx = document.getElementById("tradeIdx");
       // tradeIdx.value = parseInt(trade.tradeId._hex);
@@ -70,28 +72,32 @@ function ChatListComponent(_ref) {
     },
     React.createElement(
       "div",
-      { className: "chat_people" },
+      { className: "chat_people", id: parseInt(trade.tradeId._hex) },
       React.createElement(
         "div",
-        { className: "chat_img" },
-        React.createElement("img", { src: trade.photo, alt: "product" })
+        { className: "chat_img", id: parseInt(trade.tradeId._hex) },
+        React.createElement("img", {
+          src: trade.photo,
+          alt: "product",
+          id: parseInt(trade.tradeId._hex)
+        })
       ),
       React.createElement(
         "div",
-        { className: "chat_ib" },
+        { id: parseInt(trade.tradeId._hex), className: "chat_ib" },
         React.createElement(
           "h5",
-          null,
+          { id: parseInt(trade.tradeId._hex) },
           trade.name,
           React.createElement(
             "span",
-            { className: "chat_date" },
+            { id: parseInt(trade.tradeId._hex), className: "chat_date" },
             trade.date
           )
         ),
         React.createElement(
           "p",
-          { className: "text-center" },
+          { id: parseInt(trade.tradeId._hex), className: "text-center" },
           trade.explanation
         )
       )
@@ -111,12 +117,22 @@ var InboxChat = function (_React$Component) {
   _createClass(InboxChat, [{
     key: "render",
     value: function render() {
-      var showData = this.props.trades;
+      var trades = this.props.trades;
+      var showData = [];
+      console.log("임시출력");
+      console.log(trades);
+      for (var i = trades.length - 1; i >= 0; i--) {
+        showData.push(trades[i]);
+      }
       return React.createElement(
         "div",
         null,
         showData.map(function (trade, i) {
-          return React.createElement(ChatListComponent, { key: i, trade: trade });
+          return React.createElement(ChatListComponent, {
+            key: i,
+            trade: trade,
+            tradeIdx: showData.length - 1 - i
+          });
         })
       );
     }

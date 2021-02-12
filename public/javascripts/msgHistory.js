@@ -68,45 +68,55 @@ function OutgoingMsg(_ref2) {
 
 function RequestMsg(_ref3) {
   var time_data = _ref3.time_data,
-      img_src = _ref3.img_src;
+      img_src = _ref3.img_src,
+      chat = _ref3.chat;
 
   return React.createElement(
     "div",
-    { className: "incoming_msg" },
+    null,
     React.createElement(
       "div",
-      { className: "incoming_msg_img" },
-      React.createElement("img", { src: img_src, alt: "seller" })
-    ),
-    React.createElement(
-      "div",
-      { className: "received_msg" },
+      { className: "incoming_msg" },
       React.createElement(
         "div",
-        { className: "received_withd_msg" },
+        { className: "incoming_msg_img" },
+        React.createElement("img", { src: img_src, alt: "seller" })
+      ),
+      React.createElement(
+        "div",
+        { className: "received_msg" },
         React.createElement(
-          "p",
-          null,
-          "\uACE0\uAC1D\uB2D8 \uC0C1\uD488\uC758 \uC81C\uC791 \uC9C4\uD589\uC744 \uC704\uD574",
-          React.createElement("br", null),
-          "\uC791\uC5C5 \uC2B9\uC778\uC744 \uBD80\uD0C1\uB4DC\uB9BD\uB2C8\uB2E4.",
-          React.createElement("br", null),
+          "div",
+          { className: "received_withd_msg" },
           React.createElement(
-            "button",
-            {
-              type: "button",
-              className: "acceptApproval btn btn-success trigger"
-            },
-            "\uC790\uC138\uD788 \uBCF4\uAE30"
-          ),
-          React.createElement(
-            "span",
-            { className: "time_date" },
-            time_data
+            "p",
+            null,
+            "\uACE0\uAC1D\uB2D8 \uC0C1\uD488\uC758 \uC81C\uC791 \uC9C4\uD589\uC744 \uC704\uD574",
+            React.createElement("br", null),
+            "\uC791\uC5C5 \uC2B9\uC778\uC744 \uBD80\uD0C1\uB4DC\uB9BD\uB2C8\uB2E4.",
+            React.createElement("br", null),
+            React.createElement(
+              "button",
+              {
+                type: "button",
+                className: "acceptApproval btn btn-success trigger",
+                onClick: function onClick(e) {
+                  var chatData = document.querySelectorAll(".chatData");
+                  chatData[1].innerHTML = chat.message;
+                }
+              },
+              "\uC790\uC138\uD788 \uBCF4\uAE30"
+            ),
+            React.createElement(
+              "span",
+              { className: "time_date" },
+              time_data
+            )
           )
         )
       )
-    )
+    ),
+    React.createElement("br", null)
   );
 }
 
@@ -118,79 +128,100 @@ var MsgHistory = function (_React$Component) {
   function MsgHistory(props) {
     _classCallCheck(this, MsgHistory);
 
-    var _this = _possibleConstructorReturn(this, (MsgHistory.__proto__ || Object.getPrototypeOf(MsgHistory)).call(this, props));
-
-    _this.state = {
-      imcoming_data: [{
-        type: "incoming_msg",
-        msg: "Apollo University, Delhi, India Test",
-        time_data: "11:01 AM | Today",
-        img_src: "https://ptetutorials.com/images/user-profile.png"
-      }, {
-        type: "incoming_msg",
-        msg: "Apollo University, Delhi, India Test",
-        time_data: "11:01 AM | Today",
-        img_src: "https://ptetutorials.com/images/user-profile.png"
-      }],
-      outgoing_data: [{
-        type: "outgoing_msg",
-        msg: "Apollo University, Delhi, India Test",
-        time_data: "11:01 AM | Today"
-      }, {
-        type: "outgoing_msg",
-        msg: "Apollo University, Delhi, India Test",
-        time_data: "11:01 AM | Today"
-      }],
-      request_data: [{
-        type: "request_msg",
-        time_data: "11:01 AM | Today",
-        img_src: "https://ptetutorials.com/images/user-profile.png"
-      }]
-    };
-    return _this;
+    return _possibleConstructorReturn(this, (MsgHistory.__proto__ || Object.getPrototypeOf(MsgHistory)).call(this, props));
+    // this.state = {
+    //   imcoming_data: [
+    //     {
+    //       type: "incoming_msg",
+    //       msg: "Apollo University, Delhi, India Test",
+    //       time_data: "11:01 AM | Today",
+    //       img_src: "https://ptetutorials.com/images/user-profile.png",
+    //     },
+    //     {
+    //       type: "incoming_msg",
+    //       msg: "Apollo University, Delhi, India Test",
+    //       time_data: "11:01 AM | Today",
+    //       img_src: "https://ptetutorials.com/images/user-profile.png",
+    //     },
+    //   ],
+    //   outgoing_data: [
+    //     {
+    //       type: "outgoing_msg",
+    //       msg: "Apollo University, Delhi, India Test",
+    //       time_data: "11:01 AM | Today",
+    //     },
+    //     {
+    //       type: "outgoing_msg",
+    //       msg: "Apollo University, Delhi, India Test",
+    //       time_data: "11:01 AM | Today",
+    //     },
+    //   ],
+    //   request_data: [
+    //     {
+    //       type: "request_msg",
+    //       time_data: "11:01 AM | Today",
+    //       img_src: "https://ptetutorials.com/images/user-profile.png",
+    //     },
+    //   ],
+    // };
   }
 
+  // show() {
+  //   // 시간순으로 정렬 그리고 반복
+  //   let showData = [];
+  //   //임시
+  //   for (let i = 0; i < 2; i++) {
+  //     showData.push(this.state.imcoming_data[i]);
+  //   }
+  //   for (let i = 0; i < 2; i++) {
+  //     showData.push(this.state.outgoing_data[i]);
+  //   }
+  //   showData.push(this.state.request_data[0]);
+  //   return showData;
+  // }
+
   _createClass(MsgHistory, [{
-    key: "show",
-    value: function show() {
-      // 시간순으로 정렬 그리고 반복
-      var showData = [];
-      //임시
-      for (var i = 0; i < 2; i++) {
-        showData.push(this.state.imcoming_data[i]);
-      }
-      for (var _i = 0; _i < 2; _i++) {
-        showData.push(this.state.outgoing_data[_i]);
-      }
-      showData.push(this.state.request_data[0]);
-      return showData;
-    }
-  }, {
     key: "render",
     value: function render() {
-      console.log(this.state.imcoming_data[0]);
-      var showData = this.show();
+      // console.log(this.state.imcoming_data[0]);
+      // const showData = this.show();
+      var showData = this.props.chats.reverse();
       console.log(showData);
       return React.createElement(
         "div",
         null,
         showData.map(function (data, i) {
-          if (data.type == "incoming_msg") {
-            return React.createElement(IncomingMsg, {
-              key: i,
-              msg: data.msg,
-              time_data: data.time_data,
-              img_src: data.img_src
-            });
-          } else if (data.type == "outgoing_msg") {
-            return React.createElement(OutgoingMsg, { key: i, msg: data.msg, time_data: data.time_data });
-          } else {
+          console.log("data.type", data.type);
+          if (data.type === "request") {
             return React.createElement(RequestMsg, {
               key: i,
-              time_data: data.time_data,
-              img_src: data.img_src
+              time_data: "11:01 AM | Today",
+              img_src: "https://ptetutorials.com/images/user-profile.png",
+              chat: data
+            });
+          } else if (data.type === "accept") {
+            return React.createElement(OutgoingMsg, {
+              key: i,
+              msg: "작업승인 완료",
+              time_data: "11:01 AM | Today"
             });
           }
+          // if (data.type == "incoming_msg") {
+          //   return (
+          //     <IncomingMsg
+          //       key={i}
+          //       msg={data.msg}
+          //       time_data={data.time_data}
+          //       img_src={data.img_src}
+          //     />
+          //   );
+          // } else if (data.type == "outgoing_msg") {
+          //   return (
+          //     <OutgoingMsg key={i} msg={data.msg} time_data={data.time_data} />
+          //   );
+          // } else {
+
+          // }
         })
       );
     }
@@ -239,19 +270,21 @@ function popup() {
     }
   }
 
-  if (trigger.length !== 0) {
-    trigger[0].addEventListener("click", toggleModal);
-    trigger[1].addEventListener("click", toggleModal);
+  // if (trigger.length !== 0) {
+  //   trigger[0].addEventListener("click", toggleModal);
+  //   trigger[1].addEventListener("click", toggleModal);
+  // }
+  for (var i = 0; i < trigger.length; i++) {
+    trigger[i].addEventListener("click", toggleModal);
   }
   // if (closeButton.length !== 0) {
   //   closeButton[0].addEventListener("click", cancelToggle);
   //   closeButton[1].addEventListener("click", cancelToggle);
   // }
 
-  for (var i = 0; i < cancelButton.length; i++) {
-    closeButton[i].addEventListener("click", cancelToggle);
-    cancelButton[i].addEventListener("click", cancelToggle);
-    okButton[i].addEventListener("click", cancelToggle);
+  for (var _i = 0; _i < cancelButton.length; _i++) {
+    closeButton[_i].addEventListener("click", cancelToggle);
+    cancelButton[_i].addEventListener("click", cancelToggle);
   }
   // cancel.addEventListener("click", cancelToggle);
   window.addEventListener("click", windowOnClick);
@@ -269,8 +302,7 @@ function popup() {
 
 var domContainer = document.querySelector(".msg_history");
 domContainer.addEventListener("showCategory", function (e) {
-  console.log(e.target.id);
-  ReactDOM.render(React.createElement(MsgHistory, null), e.target);
+  ReactDOM.render(React.createElement(MsgHistory, { chats: chats }), e.target);
   popup();
   // ReactDOM.render(<MsgHistory target={e.target.id}/>, e.target);
   console.log("msgHistory changed");
