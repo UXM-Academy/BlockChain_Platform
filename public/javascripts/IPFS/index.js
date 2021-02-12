@@ -1,6 +1,5 @@
 require("buffer");
 
-const fileElement = document.getElementById("progressfile");
 const contentElement = document.getElementById("progresscontent");
 const fileSend = document.getElementById("fileSend");
 

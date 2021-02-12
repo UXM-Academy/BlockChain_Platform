@@ -27,29 +27,36 @@ function OutgoingMsg({ msg, time_data }) {
   );
 }
 
-function RequestMsg({ time_data, img_src }) {
+function RequestMsg({ time_data, img_src, chat }) {
   return (
-    <div className="incoming_msg">
-      <div className="incoming_msg_img">
-        <img src={img_src} alt="seller"></img>
-      </div>
-      <div className="received_msg">
-        <div className="received_withd_msg">
-          <p>
-            고객님 상품의 제작 진행을 위해
-            <br />
-            작업 승인을 부탁드립니다.
-            <br />
-            <button
-              type="button"
-              className="acceptApproval btn btn-success trigger"
-            >
-              자세히 보기
-            </button>
-            <span className="time_date">{time_data}</span>
-          </p>
+    <div>
+      <div className="incoming_msg">
+        <div className="incoming_msg_img">
+          <img src={img_src} alt="seller"></img>
+        </div>
+        <div className="received_msg">
+          <div className="received_withd_msg">
+            <p>
+              고객님 상품의 제작 진행을 위해
+              <br />
+              작업 승인을 부탁드립니다.
+              <br />
+              <button
+                type="button"
+                className="acceptApproval btn btn-success trigger"
+                onClick={(e) => {
+                  const chatData = document.querySelectorAll(".chatData");
+                  chatData[1].innerHTML = chat.message;
+                }}
+              >
+                자세히 보기
+              </button>
+              <span className="time_date">{time_data}</span>
+            </p>
+          </div>
         </div>
       </div>
+      <br></br>
     </div>
   );
 }
@@ -59,86 +66,100 @@ const e = React.createElement;
 class MsgHistory extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      imcoming_data: [
-        {
-          type: "incoming_msg",
-          msg: "Apollo University, Delhi, India Test",
-          time_data: "11:01 AM | Today",
-          img_src: "https://ptetutorials.com/images/user-profile.png",
-        },
-        {
-          type: "incoming_msg",
-          msg: "Apollo University, Delhi, India Test",
-          time_data: "11:01 AM | Today",
-          img_src: "https://ptetutorials.com/images/user-profile.png",
-        },
-      ],
-      outgoing_data: [
-        {
-          type: "outgoing_msg",
-          msg: "Apollo University, Delhi, India Test",
-          time_data: "11:01 AM | Today",
-        },
-        {
-          type: "outgoing_msg",
-          msg: "Apollo University, Delhi, India Test",
-          time_data: "11:01 AM | Today",
-        },
-      ],
-      request_data: [
-        {
-          type: "request_msg",
-          time_data: "11:01 AM | Today",
-          img_src: "https://ptetutorials.com/images/user-profile.png",
-        },
-      ],
-    };
+    // this.state = {
+    //   imcoming_data: [
+    //     {
+    //       type: "incoming_msg",
+    //       msg: "Apollo University, Delhi, India Test",
+    //       time_data: "11:01 AM | Today",
+    //       img_src: "https://ptetutorials.com/images/user-profile.png",
+    //     },
+    //     {
+    //       type: "incoming_msg",
+    //       msg: "Apollo University, Delhi, India Test",
+    //       time_data: "11:01 AM | Today",
+    //       img_src: "https://ptetutorials.com/images/user-profile.png",
+    //     },
+    //   ],
+    //   outgoing_data: [
+    //     {
+    //       type: "outgoing_msg",
+    //       msg: "Apollo University, Delhi, India Test",
+    //       time_data: "11:01 AM | Today",
+    //     },
+    //     {
+    //       type: "outgoing_msg",
+    //       msg: "Apollo University, Delhi, India Test",
+    //       time_data: "11:01 AM | Today",
+    //     },
+    //   ],
+    //   request_data: [
+    //     {
+    //       type: "request_msg",
+    //       time_data: "11:01 AM | Today",
+    //       img_src: "https://ptetutorials.com/images/user-profile.png",
+    //     },
+    //   ],
+    // };
   }
 
-  show() {
-    // 시간순으로 정렬 그리고 반복
-    let showData = [];
-    //임시
-    for (let i = 0; i < 2; i++) {
-      showData.push(this.state.imcoming_data[i]);
-    }
-    for (let i = 0; i < 2; i++) {
-      showData.push(this.state.outgoing_data[i]);
-    }
-    showData.push(this.state.request_data[0]);
-    return showData;
-  }
+  // show() {
+  //   // 시간순으로 정렬 그리고 반복
+  //   let showData = [];
+  //   //임시
+  //   for (let i = 0; i < 2; i++) {
+  //     showData.push(this.state.imcoming_data[i]);
+  //   }
+  //   for (let i = 0; i < 2; i++) {
+  //     showData.push(this.state.outgoing_data[i]);
+  //   }
+  //   showData.push(this.state.request_data[0]);
+  //   return showData;
+  // }
 
   render() {
-    console.log(this.state.imcoming_data[0]);
-    const showData = this.show();
+    // console.log(this.state.imcoming_data[0]);
+    // const showData = this.show();
+    const showData = this.props.chats.reverse();
     console.log(showData);
     return (
       <div>
         {showData.map((data, i) => {
-          if (data.type == "incoming_msg") {
-            return (
-              <IncomingMsg
-                key={i}
-                msg={data.msg}
-                time_data={data.time_data}
-                img_src={data.img_src}
-              />
-            );
-          } else if (data.type == "outgoing_msg") {
-            return (
-              <OutgoingMsg key={i} msg={data.msg} time_data={data.time_data} />
-            );
-          } else {
+          console.log("data.type", data.type);
+          if (data.type === "request") {
             return (
               <RequestMsg
                 key={i}
-                time_data={data.time_data}
-                img_src={data.img_src}
+                time_data={"11:01 AM | Today"}
+                img_src={"https://ptetutorials.com/images/user-profile.png"}
+                chat={data}
+              />
+            );
+          } else if (data.type === "accept") {
+            return (
+              <OutgoingMsg
+                key={i}
+                msg={"작업승인 완료"}
+                time_data={"11:01 AM | Today"}
               />
             );
           }
+          // if (data.type == "incoming_msg") {
+          //   return (
+          //     <IncomingMsg
+          //       key={i}
+          //       msg={data.msg}
+          //       time_data={data.time_data}
+          //       img_src={data.img_src}
+          //     />
+          //   );
+          // } else if (data.type == "outgoing_msg") {
+          //   return (
+          //     <OutgoingMsg key={i} msg={data.msg} time_data={data.time_data} />
+          //   );
+          // } else {
+
+          // }
         })}
       </div>
     );
@@ -185,9 +206,12 @@ function popup() {
     }
   }
 
-  if (trigger.length !== 0) {
-    trigger[0].addEventListener("click", toggleModal);
-    trigger[1].addEventListener("click", toggleModal);
+  // if (trigger.length !== 0) {
+  //   trigger[0].addEventListener("click", toggleModal);
+  //   trigger[1].addEventListener("click", toggleModal);
+  // }
+  for (let i = 0; i < trigger.length; i++) {
+    trigger[i].addEventListener("click", toggleModal);
   }
   // if (closeButton.length !== 0) {
   //   closeButton[0].addEventListener("click", cancelToggle);
@@ -197,7 +221,6 @@ function popup() {
   for (let i = 0; i < cancelButton.length; i++) {
     closeButton[i].addEventListener("click", cancelToggle);
     cancelButton[i].addEventListener("click", cancelToggle);
-    okButton[i].addEventListener("click", cancelToggle);
   }
   // cancel.addEventListener("click", cancelToggle);
   window.addEventListener("click", windowOnClick);
@@ -217,8 +240,7 @@ const domContainer = document.querySelector(".msg_history");
 domContainer.addEventListener(
   "showCategory",
   (e) => {
-    console.log(e.target.id);
-    ReactDOM.render(<MsgHistory />, e.target);
+    ReactDOM.render(<MsgHistory chats={chats} />, e.target);
     popup();
     // ReactDOM.render(<MsgHistory target={e.target.id}/>, e.target);
     console.log("msgHistory changed");
