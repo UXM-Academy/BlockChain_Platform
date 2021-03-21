@@ -21,7 +21,7 @@ function OutgoingMsg({ msg, time_data }) {
     <div className="outgoing_msg">
       <div className="sent_msg">
         <p>{msg}</p>
-        <span className="time_date">{time_data}</span>
+        <span className="time_date">{time_data.toLocaleString()}</span>
       </div>
     </div>
   );
@@ -47,11 +47,15 @@ function RequestMsg({ time_data, img_src, chat }) {
                 onClick={(e) => {
                   const chatData = document.querySelectorAll(".chatData");
                   chatData[1].innerHTML = chat.message;
+                  const fileDownload = document.querySelector(".file-download")
+                  var imagetobase64 = chat.file.toString("base64");
+                  var base64Src = "data:image/jpeg;base64," + imagetobase64;
+                  fileDownload.setAttribute( 'href', base64Src )
                 }}
               >
                 자세히 보기
               </button>
-              <span className="time_date">{time_data}</span>
+              <span className="time_date">{time_data.toLocaleString()}</span>
             </p>
           </div>
         </div>
@@ -130,7 +134,8 @@ class MsgHistory extends React.Component {
             return (
               <RequestMsg
                 key={i}
-                time_data={"11:01 AM | Today"}
+                // time_data={"11:01 AM | Today"}
+                time_data={data.date}
                 img_src={"https://ptetutorials.com/images/user-profile.png"}
                 chat={data}
               />
@@ -140,7 +145,8 @@ class MsgHistory extends React.Component {
               <OutgoingMsg
                 key={i}
                 msg={"작업승인 완료"}
-                time_data={"11:01 AM | Today"}
+                // time_data={"11:01 AM | Today"}
+                time_data={data.date}
               />
             );
           }

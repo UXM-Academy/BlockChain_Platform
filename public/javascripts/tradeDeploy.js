@@ -5,24 +5,53 @@ const buyBtn = document.getElementById("buyBtn");
 const userIdx = document.getElementById("userIdx");
 const sellerIdx = document.getElementById("sellerIdx");
 const productCid = document.getElementById("cid").value;
-const productPrice = document.getElementById("price");
+// const productPrice = document.getElementById("price").innerText;
+const domContainer = document.querySelectorAll(".serviceInfo");
+
 console.log(buyBtn);
 // 임시 param: price
+
+async function getEtherValue() {
+  let response = await fetch("https://api.upbit.com/v1/ticker?markets=KRW-ETH");
+  let eth = await response.json();
+  return eth;
+}
+
 async function setTrade(_price, _userAccounts) {
   console.log("progress1");
   console.log(_userAccounts[0]);
   console.log(parseInt(userIdx.value));
-  console.log(parseInt(sellerIdx.value));
-  console.log(productCid);
+  console.log(_price);
+  console.log(domContainer[2].innerHTML);
+
+  let ethValue = await getEtherValue();
+  console.log(ethValue);
+  let nowEthValue = ethValue[0].trade_price;
+  console.log(nowEthValue);
+
+  //가격 불러와서 나누기 (1900000은 예시)
+  const productPrice = (
+    domContainer[2].innerHTML / ethValue[0].trade_price
+  ).toString();
+
+  let overrides = {
+    value: ethers.utils.parseEther(productPrice),
+  };
+  //var string = ethers.utils.formatEther(overrides);
+  //console.log(string)
+  //let pp = overrides.toHexString(16);
+  //console.log(pp);
+  console.log(productPrice);
   const tx = await myContract.setTrade(
     "0x8E3e6B6EB1e392901Cfc3eD7C0adAc6522CE7507",
     parseInt(userIdx.value),
-    1,
+    _price,
     "talentId",
     _userAccounts[0],
     3,
     productCid,
-    parseInt(sellerIdx.value)
+    parseInt(sellerIdx.value),
+    overrides
   );
   onLoading();
   const receipt = await tx.wait();

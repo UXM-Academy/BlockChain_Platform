@@ -5,34 +5,8 @@ let trades = [];
 let chats = [];
 let myContract;
 let ipfs;
-const contractAddress = "0xeF31cb50f16B9873F8B86bcd17807f1E1414E16b";
+const contractAddress = "0x7B844C9B50b07e1731b6BBE967f1b7b8b5Cd9DD2";
 contractABI = [
-  {
-    constant: false,
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "_trId",
-        type: "uint256",
-      },
-      {
-        internalType: "uint256",
-        name: "_userID",
-        type: "uint256",
-      },
-    ],
-    name: "getUseReport",
-    outputs: [
-      {
-        internalType: "string",
-        name: "",
-        type: "string",
-      },
-    ],
-    payable: false,
-    stateMutability: "nonpayable",
-    type: "function",
-  },
   {
     anonymous: false,
     inputs: [
@@ -133,26 +107,6 @@ contractABI = [
     type: "event",
   },
   {
-    constant: false,
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "_trId",
-        type: "uint256",
-      },
-      {
-        internalType: "uint256",
-        name: "_userID",
-        type: "uint256",
-      },
-    ],
-    name: "respondAgree",
-    outputs: [],
-    payable: false,
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
     anonymous: false,
     inputs: [
       {
@@ -178,31 +132,6 @@ contractABI = [
     type: "event",
   },
   {
-    constant: false,
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "_tradeId",
-        type: "uint256",
-      },
-      {
-        internalType: "uint256",
-        name: "_cancelStep",
-        type: "uint256",
-      },
-      {
-        internalType: "uint256",
-        name: "_userID",
-        type: "uint256",
-      },
-    ],
-    name: "respondCancel",
-    outputs: [],
-    payable: false,
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
     anonymous: false,
     inputs: [
       {
@@ -226,126 +155,6 @@ contractABI = [
     ],
     name: "RespondCancel",
     type: "event",
-  },
-  {
-    constant: false,
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "_tradeId",
-        type: "uint256",
-      },
-      {
-        internalType: "string",
-        name: "_cid",
-        type: "string",
-      },
-    ],
-    name: "setChat",
-    outputs: [],
-    payable: false,
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    constant: false,
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "_categoryIdx",
-        type: "uint256",
-      },
-      {
-        internalType: "uint256",
-        name: "_sellerIdx",
-        type: "uint256",
-      },
-      {
-        internalType: "string",
-        name: "_cid",
-        type: "string",
-      },
-    ],
-    name: "setSetting",
-    outputs: [],
-    payable: false,
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    constant: false,
-    inputs: [
-      {
-        internalType: "address payable",
-        name: "_addressSeller",
-        type: "address",
-      },
-      {
-        internalType: "uint256",
-        name: "_userID",
-        type: "uint256",
-      },
-      {
-        internalType: "uint256",
-        name: "price",
-        type: "uint256",
-      },
-      {
-        internalType: "string",
-        name: "_talID",
-        type: "string",
-      },
-      {
-        internalType: "address payable",
-        name: "_addressBuyer",
-        type: "address",
-      },
-      {
-        internalType: "uint256",
-        name: "_divded",
-        type: "uint256",
-      },
-      {
-        internalType: "string",
-        name: "_productCid",
-        type: "string",
-      },
-      {
-        internalType: "uint256",
-        name: "_sellerID",
-        type: "uint256",
-      },
-    ],
-    name: "setTrade",
-    outputs: [],
-    payable: true,
-    stateMutability: "payable",
-    type: "function",
-  },
-  {
-    constant: false,
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "_trId",
-        type: "uint256",
-      },
-      {
-        internalType: "string",
-        name: "_useReport",
-        type: "string",
-      },
-      {
-        internalType: "uint256",
-        name: "_userID",
-        type: "uint256",
-      },
-    ],
-    name: "setUseReport",
-    outputs: [],
-    payable: false,
-    stateMutability: "nonpayable",
-    type: "function",
   },
   {
     constant: true,
@@ -500,6 +309,53 @@ contractABI = [
   },
   {
     constant: true,
+    inputs: [],
+    name: "getTest",
+    outputs: [
+      {
+        components: [
+          {
+            internalType: "string",
+            name: "typeName",
+            type: "string",
+          },
+          {
+            internalType: "string",
+            name: "file",
+            type: "string",
+          },
+          {
+            internalType: "string",
+            name: "message",
+            type: "string",
+          },
+          {
+            internalType: "uint256",
+            name: "trId",
+            type: "uint256",
+          },
+          {
+            internalType: "uint256",
+            name: "userIdx",
+            type: "uint256",
+          },
+          {
+            internalType: "uint256",
+            name: "sellerIdx",
+            type: "uint256",
+          },
+        ],
+        internalType: "struct TalentData.Test",
+        name: "",
+        type: "tuple",
+      },
+    ],
+    payable: false,
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    constant: true,
     inputs: [
       {
         internalType: "uint256",
@@ -584,6 +440,237 @@ contractABI = [
     ],
     payable: false,
     stateMutability: "view",
+    type: "function",
+  },
+  {
+    constant: false,
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "_trId",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
+        name: "_userID",
+        type: "uint256",
+      },
+    ],
+    name: "getUseReport",
+    outputs: [
+      {
+        internalType: "string",
+        name: "",
+        type: "string",
+      },
+    ],
+    payable: false,
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    constant: false,
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "_trId",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
+        name: "_userID",
+        type: "uint256",
+      },
+    ],
+    name: "respondAgree",
+    outputs: [],
+    payable: false,
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    constant: false,
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "_tradeId",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
+        name: "_cancelStep",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
+        name: "_userID",
+        type: "uint256",
+      },
+    ],
+    name: "respondCancel",
+    outputs: [],
+    payable: false,
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    constant: false,
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "_tradeId",
+        type: "uint256",
+      },
+      {
+        internalType: "string",
+        name: "_cid",
+        type: "string",
+      },
+    ],
+    name: "setChat",
+    outputs: [],
+    payable: false,
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    constant: false,
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "_categoryIdx",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
+        name: "_sellerIdx",
+        type: "uint256",
+      },
+      {
+        internalType: "string",
+        name: "_cid",
+        type: "string",
+      },
+    ],
+    name: "setSetting",
+    outputs: [],
+    payable: false,
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    constant: false,
+    inputs: [
+      {
+        internalType: "string",
+        name: "typeName",
+        type: "string",
+      },
+      {
+        internalType: "string",
+        name: "file",
+        type: "string",
+      },
+      {
+        internalType: "string",
+        name: "message",
+        type: "string",
+      },
+      {
+        internalType: "uint256",
+        name: "_trId",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
+        name: "userIdx",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
+        name: "sellerIdx",
+        type: "uint256",
+      },
+    ],
+    name: "setTest",
+    outputs: [],
+    payable: false,
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    constant: false,
+    inputs: [
+      {
+        internalType: "address payable",
+        name: "_addressSeller",
+        type: "address",
+      },
+      {
+        internalType: "uint256",
+        name: "_userID",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
+        name: "price",
+        type: "uint256",
+      },
+      {
+        internalType: "string",
+        name: "_talID",
+        type: "string",
+      },
+      {
+        internalType: "address payable",
+        name: "_addressBuyer",
+        type: "address",
+      },
+      {
+        internalType: "uint256",
+        name: "_divded",
+        type: "uint256",
+      },
+      {
+        internalType: "string",
+        name: "_productCid",
+        type: "string",
+      },
+      {
+        internalType: "uint256",
+        name: "_sellerID",
+        type: "uint256",
+      },
+    ],
+    name: "setTrade",
+    outputs: [],
+    payable: true,
+    stateMutability: "payable",
+    type: "function",
+  },
+  {
+    constant: false,
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "_trId",
+        type: "uint256",
+      },
+      {
+        internalType: "string",
+        name: "_useReport",
+        type: "string",
+      },
+      {
+        internalType: "uint256",
+        name: "_userID",
+        type: "uint256",
+      },
+    ],
+    name: "setUseReport",
+    outputs: [],
+    payable: false,
+    stateMutability: "nonpayable",
     type: "function",
   },
 ];
