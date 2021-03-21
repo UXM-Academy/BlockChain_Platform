@@ -3,18 +3,19 @@
     span.acceptApproval.close-button.accept_close_btn &times;
     h1.title 받은 메세지
     #acceptApproval
-      button.file-download(type='button')
+      //- button.file-download(type='button')
+      a.file-download(download)
         i.fa.fa-download(aria-hidden='true')
       .wrapper
         div
           label(for='number') 합의횟수
-        div.chatData(style='padding-top: 16px;') lsafhoas
+        div.chatData(style='padding-top: 16px;') 1
         div
           label(for='messages') 내용
         div.chatData(style='padding-top: 16px;') asdfasdf
         div
           label(for='date') 수신일
-        div.chatData(style='padding-top: 16px;') asdfasdfas
+        div.chatData(style='padding-top: 16px;') 2021-03-21
 
       //- #ok -> .ok
       input.acceptApproval.ok(type='button' value='수락')

@@ -60,7 +60,7 @@ function OutgoingMsg(_ref2) {
       React.createElement(
         "span",
         { className: "time_date" },
-        time_data
+        time_data.toLocaleString()
       )
     )
   );
@@ -103,6 +103,10 @@ function RequestMsg(_ref3) {
                 onClick: function onClick(e) {
                   var chatData = document.querySelectorAll(".chatData");
                   chatData[1].innerHTML = chat.message;
+                  var fileDownload = document.querySelector(".file-download");
+                  var imagetobase64 = chat.file.toString("base64");
+                  var base64Src = "data:image/jpeg;base64," + imagetobase64;
+                  fileDownload.setAttribute('href', base64Src);
                 }
               },
               "\uC790\uC138\uD788 \uBCF4\uAE30"
@@ -110,7 +114,7 @@ function RequestMsg(_ref3) {
             React.createElement(
               "span",
               { className: "time_date" },
-              time_data
+              time_data.toLocaleString()
             )
           )
         )
@@ -194,16 +198,18 @@ var MsgHistory = function (_React$Component) {
           console.log("data.type", data.type);
           if (data.type === "request") {
             return React.createElement(RequestMsg, {
-              key: i,
-              time_data: "11:01 AM | Today",
+              key: i
+              // time_data={"11:01 AM | Today"}
+              , time_data: data.date,
               img_src: "https://ptetutorials.com/images/user-profile.png",
               chat: data
             });
           } else if (data.type === "accept") {
             return React.createElement(OutgoingMsg, {
               key: i,
-              msg: "작업승인 완료",
-              time_data: "11:01 AM | Today"
+              msg: "작업승인 완료"
+              // time_data={"11:01 AM | Today"}
+              , time_data: data.date
             });
           }
           // if (data.type == "incoming_msg") {

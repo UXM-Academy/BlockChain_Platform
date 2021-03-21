@@ -61,8 +61,6 @@ function startApp(provider) {
   if (provider.provider !== window.ethereum) {
     console.error("Do you have multiple wallets installed?");
   } else {
-    // const contractAddress = "0xD4EE6eE1E06E8dCc7A7008d1DfE312f8AEBBbA16";
-    // myContract = new web3js.eth.Contract(abi, contractAddress);
     myContract = new ethers.Contract(contractAddress, contractABI, signer);
     console.log(myContract);
   }

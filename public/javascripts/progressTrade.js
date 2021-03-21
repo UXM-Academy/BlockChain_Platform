@@ -2359,6 +2359,7 @@ let tradeIdx = document.getElementById("tradeIdx");
 const domContainer = document.querySelector(".inbox_chat");
 console.log(trId);
 const fileSend = document.getElementById("fileSend");
+const fileSendTest = document.getElementById("fileSendTest");
 const acceptBtn = document.querySelector(".acceptApproval.ok");
 const contentElement = document.getElementById("progresscontent");
 
@@ -2400,6 +2401,8 @@ async function init() {
   const listKeys = Array.from(chatList).map((chat) => chat.id);
   console.log(listKeys);
   fileSend.addEventListener("click", handlebuttons);
+  // fileSendTest.addEventListener("click", handleTestbuttons);
+
   acceptBtn.addEventListener("click", handleAcceptBtn);
   for (var i = 0; i < chatList.length; i++) {
     chatList[i].addEventListener("click", async (e) => {
@@ -2439,6 +2442,29 @@ async function init() {
     });
   }
 }
+async function handleTestbuttons(event) {
+  event.preventDefault();
+  let file = contentElement[1].files[0];
+  let message = contentElement[0].value;
+  reader.readAsArrayBuffer(file);
+  let date = new Date();
+  reader.onloadend = async () => {
+    const filebuffer = Buffer.from(reader.result);
+    const overrides = { gasLimit: 30000000 };
+    const tx = await myContract.setTest(
+      "request",
+      filebuffer.toString(),
+      message,
+      parseInt(trId.value),
+      parseInt(userIdx.value),
+      parseInt(sellerIdx.value),
+      overrides
+    );
+    const receipt = await tx.wait();
+    const a = await myContract.getTest();
+    console.log(a);
+  };
+}
 async function handlebuttons(event) {
   event.preventDefault();
   console.dir(contentElement);
@@ -2449,12 +2475,14 @@ async function handlebuttons(event) {
   let message = contentElement[0].value;
   console.log(file);
   reader.readAsArrayBuffer(file);
+  let date = new Date();
   reader.onloadend = async () => {
     const filebuffer = Buffer.from(reader.result);
     const chatCid = await ipfs.dag.put({
       type: "request",
       file: filebuffer,
       message: message,
+      date: date,
       trId: parseInt(trId.value),
       userIdx: parseInt(userIdx.value),
       sellerIdx: parseInt(sellerIdx.value),
@@ -2485,9 +2513,11 @@ async function handleAcceptBtn(event) {
   console.log(a);
   let root = await myContract.getChat(parseInt(trId.value));
   let message = contentElement[0].value;
+  let date = new Date();
   const chatCid = await ipfs.dag.put({
     type: "accept",
     message: message,
+    date: date,
     trId: parseInt(trId.value),
     userIdx: parseInt(userIdx.value),
     sellerIdx: parseInt(sellerIdx.value),
@@ -2506,8 +2536,6 @@ function startApp(provider) {
   if (provider.provider !== window.ethereum) {
     console.error("Do you have multiple wallets installed?");
   } else {
-    // const contractAddress = "0xD4EE6eE1E06E8dCc7A7008d1DfE312f8AEBBbA16";
-    // myContract = new web3js.eth.Contract(abi, contractAddress);
     myContract = new ethers.Contract(contractAddress, contractABI, signer);
     console.log(myContract);
   }

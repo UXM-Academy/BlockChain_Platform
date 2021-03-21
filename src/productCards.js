@@ -14,12 +14,13 @@ function ProductCard({ product }) {
   console.log(imagetobase64);
   const base64Src = "data:image/jpeg;base64," + imagetobase64;
   const href = `/serviceInfo/${product.cid}`;
+  // const href = `ipfs.io/${product.cid}`
   // const href = `/serviceInfo`;
   return (
     <div className="col-sm-6 col-md-4 p-1">
       <a href={href}>
         <div className="card" style={{ width: "14rem" }}>
-          <img className="card-img-top" src={base64Src} alt="..."></img>
+          <img className="card-img-top" src={base64Src} alt="..." ></img>
           <div className="card-body">
             <h5 className="card-title">{product.title}</h5>
             <p className="card-text">{product.explanation}</p>
